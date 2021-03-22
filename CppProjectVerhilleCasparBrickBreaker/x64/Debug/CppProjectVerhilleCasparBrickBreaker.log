@@ -1,4 +1,5 @@
-﻿Main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) référencé dans la fonction main
+﻿  Main.cpp
+Main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) référencé dans la fonction main
 Main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) référencé dans la fonction main
 Main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QEAA@III@Z) référencé dans la fonction main
 Main.obj : error LNK2019: symbole externe non résolu "__declspec(dllimport) public: void __cdecl sf::Window::close(void)" (__imp_?close@Window@sf@@QEAAXXZ) référencé dans la fonction main
