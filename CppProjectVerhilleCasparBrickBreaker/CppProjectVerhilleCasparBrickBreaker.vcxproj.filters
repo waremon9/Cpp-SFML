@@ -18,6 +18,9 @@
     <ClCompile Include="Function.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -27,6 +30,9 @@
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>

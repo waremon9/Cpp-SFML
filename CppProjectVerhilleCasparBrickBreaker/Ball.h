@@ -3,6 +3,8 @@
 #include "Global.h"
 #include "Function.h"
 
+class Block;
+
 class Ball
 {
 private:
@@ -10,6 +12,8 @@ private:
 	float BaseSpeed;
 	sf::Vector2<float> Velocity;
 	sf::Vector2<float> Position;
+
+	bool intersects(sf::CircleShape, sf::RectangleShape);
 
 public:
 	Ball(float, sf::Vector2<float>, float); //speed, position, launchAngle
@@ -19,6 +23,7 @@ public:
 
 	void Bounce(sf::Vector2<float>);
 	void Move();
+	void CheckColisions(std::vector<Block*>);
 
 	void draw() { window.draw(*Circle); }
 };
