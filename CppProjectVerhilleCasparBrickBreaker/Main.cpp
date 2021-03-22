@@ -42,7 +42,7 @@ int main()
 
         for (Ball* b : AllBalls) {
             b->Move();
-            b->CheckColisions(AllBricks);
+            b->CheckColisions(AllBricks, AllBalls);
         }
 
         // Clear screen

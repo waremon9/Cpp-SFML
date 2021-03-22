@@ -32,12 +32,22 @@ void Ball::Move() {
 }
 
 //check if ball hit a brick
-void Ball::CheckColisions(std::vector<Block*> allBricks)
+void Ball::CheckColisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls)
 {
     for (Block* b : allBricks) {
         if (intersects(*Circle, b->getShape())) {
             Velocity.x *= -1;
             Velocity.y *= -1;
+        }
+    }
+
+    for (Ball* b : allBalls) {
+        if (b->getPosition() != Position) {//not checking with herself
+            if (intersects(*Circle, b->getShape())) {
+                sf::Vector2<float> tmp = Velocity;
+                Velocity = b->getVelocity();
+                b->setVelocity(tmp);
+            }
         }
     }
 }
@@ -63,4 +73,16 @@ bool Ball::intersects(sf::CircleShape circle, sf::RectangleShape rect)
         (distance.y - rect.getSize().y / 2) * (distance.y - rect.getSize().y / 2);
 
     return (cornerDistance_sq <= (circle.getRadius() * circle.getRadius()));
+}
+
+
+bool Ball::intersects(sf::CircleShape circle1, sf::CircleShape circle2)
+{
+    sf::Vector2<float> circle1Center{ (circle1.getPosition().x + circle1.getRadius()) , (circle1.getPosition().y + circle1.getRadius()) };
+    sf::Vector2<float> circle2Center{ (circle2.getPosition().x + circle2.getRadius()) , (circle2.getPosition().y + circle2.getRadius()) };
+
+    //get distance between circle1 center and circle2 center
+    float distance = sqrt((circle2Center.x - circle1Center.x) * (circle2Center.x - circle1Center.x) + (circle2Center.y - circle1Center.y) * (circle2Center.y - circle1Center.y));
+
+    return distance < circle1.getRadius() + circle2.getRadius();
 }
