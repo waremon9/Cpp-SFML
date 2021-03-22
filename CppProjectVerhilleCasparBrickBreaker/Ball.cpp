@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include <iostream>
 
 Ball::Ball(float speed, sf::Vector2<float> position, float angle)
 {
@@ -19,11 +20,11 @@ void Ball::Bounce( sf::Vector2<float> n) {
 void Ball::Move() {
     //update ball position
     Position += Velocity;
-    Circle.setPosition(Position);
+    Circle->setPosition(Position);
 
     //screen bound
     if (Position.x < 0) Bounce(sf::Vector2<float>{1, 0});
-    if (Position.x > window.getSize().x - Circle.getRadius() * 2) Bounce(sf::Vector2<float>{-1, 0});
+    if (Position.x > window.getSize().x - Circle->getRadius() * 2) Bounce(sf::Vector2<float>{-1, 0});
     if (Position.y < 0) Bounce(sf::Vector2<float>{0, 1});
-    if (Position.y > window.getSize().y - Circle.getRadius() * 2) Bounce(sf::Vector2<float>{0, -1});
+    if (Position.y > window.getSize().y - Circle->getRadius() * 2) Bounce(sf::Vector2<float>{0, -1});
 }

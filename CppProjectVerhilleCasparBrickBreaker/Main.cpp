@@ -4,7 +4,11 @@
 #include "Function.h"
 #include "Ball.h"
 
+void createBall();
+
 sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
+
+std::vector<Ball*> AllBalls;
 
 int main()
 {
@@ -14,7 +18,9 @@ int main()
     window.setFramerateLimit(60);
 
     //ball
-    Ball ball(8, sf::Vector2<float> { 500,350 }, RandomInt(0, 359));
+    for (int i = 0; i < 10; i++) {
+        createBall();
+    }
 
     //game loop
     while (window.isOpen())
@@ -27,16 +33,27 @@ int main()
                 window.close();
         }
 
-        ball.Move();
+        for (Ball* b : AllBalls) {
+            b->Move();
+        }
 
         // Clear screen
         window.clear();
         //draw everything
-        ball.draw();
+        for (Ball* b : AllBalls) {
+            b->draw();
+        }
 
         // Update the window
         window.display();
     }
 
     return 0;
+}
+
+void createBall() {
+    float speed = RandomInt(5, 20);
+    sf::Vector2<float> pos{ (float)RandomInt(0,window.getSize().x - 40), (float)RandomInt(0,window.getSize().y - 40) };
+    float angle = RandomInt(0, 359);
+    AllBalls.push_back(new Ball(speed, pos, angle));
 }
