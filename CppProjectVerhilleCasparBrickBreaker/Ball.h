@@ -12,7 +12,7 @@ private:
 	
 	float Velocity;
 	sf::Vector2<float> Direction;
-	float Radius = 20;
+	float Radius = 18;
 
 	std::vector<Entity*> CollisionVector;
 

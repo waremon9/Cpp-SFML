@@ -48,32 +48,42 @@ void Ball::Move() {
 //check if ball hit a brick
 void Ball::CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls)
 {
+    bool hitSomething = false;
+
     for (Entity* b : allBricks) {
         if (intersects(b) && !vectorContain(CollisionVector, b)) {
-            CollisionVector.clear();
-            CollisionVector.push_back(b);
+            if (!hitSomething) {//first hit, update direction
+                CollisionVector.clear();
 
-            whichSide(b);
+                whichSide(b);
+
+                hitSomething = true;
+            }
+            CollisionVector.push_back(b);
         }
     }
 
-    for (Entity* b : allBalls) {
+   /* for (Entity* b : allBalls) {
         if (b->getPosition() != Position) {//not checking with herself
             if (intersects(b) && !vectorContain(CollisionVector, b)) {
-                CollisionVector.clear();
-                CollisionVector.push_back(b);
+                if (!hitSomething) {//first hit, update direction
+                    CollisionVector.clear();
 
-                sf::Vector2<float> tmpDir = Direction;
-                Direction = ((Ball*)b)->getDirection();
-                ((Ball*)b)->setDirection(tmpDir);
-                float tmpVel = Velocity;
-                Velocity = ((Ball*)b)->getVelocity();
-                ((Ball*)b)->setVelocity(tmpVel);
+                    sf::Vector2<float> tmpDir = Direction;
+                    Direction = ((Ball*)b)->getDirection();
+                    ((Ball*)b)->setDirection(tmpDir);
+                    float tmpVel = Velocity;
+                    Velocity = ((Ball*)b)->getVelocity();
+                    ((Ball*)b)->setVelocity(tmpVel);
 
+                    CollisionVector.push_back(b);
+
+                    hitSomething = true;
+                }
                 CollisionVector.push_back(b);
             }
         }
-    }
+    }*/
 }
 
 bool Ball::intersects(const Entity* E) const {
@@ -92,10 +102,10 @@ bool Ball::intersects(const Entity* E) const {
 void Ball::whichSide(const Entity* E) {
     sf::FloatRect Bound1 = this->getShape()->getGlobalBounds();
     sf::FloatRect Bound2 = E->getShape()->getGlobalBounds();
-    float droite = distance2Points(sf::Vector2<float>{Bound1.left, Bound1.top + Bound1.height / 2}, sf::Vector2<float>{Bound2.left + Bound2.width, Bound2.top + Bound2.height / 2});
-    float gauche = distance2Points(sf::Vector2<float>{Bound1.left + Bound1.width, Bound1.top + Bound1.height / 2}, sf::Vector2<float>{Bound2.left, Bound2.top + Bound2.height / 2});
-    float haut = distance2Points(sf::Vector2<float>{Bound1.left + Bound1.width / 2, Bound1.top + Bound1.height}, sf::Vector2<float>{Bound2.left + Bound2.width / 2, Bound2.top + Bound2.height});
-    float bas = distance2Points(sf::Vector2<float>{Bound1.left + Bound1.width / 2, Bound1.top}, sf::Vector2<float>{Bound2.left + Bound2.width / 2, Bound2.top});
+    float droite = abs(Bound1.left - (Bound2.left + Bound2.width));
+    float gauche = abs((Bound1.left + Bound1.width) - Bound2.left);
+    float haut = abs((Bound1.top + Bound1.height) - Bound2.top);
+    float bas = abs(Bound1.top - (Bound2.top + Bound2.height));
     float konami = std::min({ droite, gauche, haut, bas });
     if (konami == droite) Direction.x *= -1;
     else if (konami == gauche) Direction.x *= -1;

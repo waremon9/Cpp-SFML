@@ -1,2 +1,5 @@
-﻿  Ball.cpp
+﻿  Main.cpp
+C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(19,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(72,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(74,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   CppProjectVerhilleCasparBrickBreaker.vcxproj -> C:\Users\tverhille\Documents\C++\Cpp-SFML\Debug\CppProjectVerhilleCasparBrickBreaker.exe

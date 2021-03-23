@@ -19,7 +19,6 @@ int main()
     srand(time(NULL));//make random really random
 
     //window
-    window.setFramerateLimit(60);
 
     sf::Clock deltaClock;
 
@@ -36,9 +35,8 @@ int main()
     //game loop
     while (window.isOpen())
     {
-
-        sf::Time dt = deltaClock.restart();
-        deltaTime = dt.asMilliseconds() / 1000.f;
+        deltaTime = deltaClock.getElapsedTime().asSeconds();
+        deltaClock.restart();
 
         //Process event
         sf::Event event;
