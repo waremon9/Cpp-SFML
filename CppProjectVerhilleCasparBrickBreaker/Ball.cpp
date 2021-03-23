@@ -23,7 +23,7 @@ void Ball::Bounce( sf::Vector2<float> n) {
 
 void Ball::Move() {
     //update ball position
-    Position += Direction * Velocity;
+    Position += Direction * Velocity * deltaTime;
     Circle->setPosition(Position);
 
     //screen bound
@@ -38,13 +38,17 @@ void Ball::CheckColisions(std::vector<Block*> allBricks, std::vector<Ball*> allB
 {
     for (Block* b : allBricks) {
         if (intersects(*Circle, b->getShape())) {
-            Direction *= -1.f;
+            whichSide(*Circle, b->getShape());
         }
     }
 
     for (Ball* b : allBalls) {
         if (b->getPosition() != Position) {//not checking with herself
             if (intersects(*Circle, b->getShape())) {
+                /*
+                Bounce(ballNormal(*Circle, b->getShape()));
+                b->Bounce(ballNormal(b->getShape(), *Circle));
+                */
                 sf::Vector2<float> tmpDir = Direction;
                 Direction = b->getDirection();
                 b->setDirection(tmpDir);
@@ -56,6 +60,7 @@ void Ball::CheckColisions(std::vector<Block*> allBricks, std::vector<Ball*> allB
     }
 }
 
+/*
 //check collision between a circle and a square
 bool Ball::intersects(sf::CircleShape circle, sf::RectangleShape rect)
 {
@@ -78,7 +83,30 @@ bool Ball::intersects(sf::CircleShape circle, sf::RectangleShape rect)
 
     return (cornerDistance_sq <= (circle.getRadius() * circle.getRadius()));
 }
+*/
 
+bool Ball::intersects(sf::CircleShape circle, sf::RectangleShape rect) {
+    if (
+        circle.getPosition().x < rect.getPosition().x + rect.getSize().x && //gauche circle and droite rectangle
+        circle.getPosition().x + circle.getRadius() * 2 > rect.getPosition().x && //droite circle and gauche rectangle
+        circle.getPosition().y < rect.getPosition().y + rect.getSize().y && //haut circle and bas rectangle
+        circle.getPosition().y + circle.getRadius() * 2 > rect.getPosition().y) { //bas circle and haut rectangle
+        return true;
+    }
+    return false;
+}
+
+void Ball::whichSide(sf::CircleShape circle, sf::RectangleShape rect) {
+    float droite = distance2Points(circle.getPosition() + sf::Vector2<float>{0, circle.getRadius()}, rect.getPosition() + sf::Vector2<float>{rect.getSize().x, -rect.getSize().y / 2});
+    float gauche = distance2Points(circle.getPosition() + sf::Vector2<float>{circle.getRadius() * 2, -circle.getRadius()}, rect.getPosition() + sf::Vector2<float>{0, -rect.getSize().y / 2});
+    float haut = distance2Points(circle.getPosition() + sf::Vector2<float>{circle.getRadius(), circle.getRadius() * 2}, rect.getPosition() + sf::Vector2<float>{rect.getSize().x / 2, 0});
+    float bas = distance2Points(circle.getPosition() + sf::Vector2<float>{circle.getRadius(), 0}, rect.getPosition() + sf::Vector2<float>{rect.getSize().x / 2, rect.getSize().y});
+    float konami = std::min({ droite, gauche, haut, bas });
+    if (konami == droite) Direction.x *= -1;
+    else if (konami == gauche) Direction.x *= -1;
+    else if (konami == haut) Direction.y *= -1;
+    else if (konami == bas) Direction.y *= -1;
+}
 
 bool Ball::intersects(sf::CircleShape circle1, sf::CircleShape circle2)
 {
@@ -86,7 +114,16 @@ bool Ball::intersects(sf::CircleShape circle1, sf::CircleShape circle2)
     sf::Vector2<float> circle2Center{ (circle2.getPosition().x + circle2.getRadius()) , (circle2.getPosition().y + circle2.getRadius()) };
 
     //get distance between circle1 center and circle2 center
-    float distance = sqrt((circle2Center.x - circle1Center.x) * (circle2Center.x - circle1Center.x) + (circle2Center.y - circle1Center.y) * (circle2Center.y - circle1Center.y));
+    float distance = distance2Points(circle1Center, circle2Center);
 
     return distance < circle1.getRadius() + circle2.getRadius();
 }
+
+/*
+sf::Vector2<float> Ball::ballNormal(sf::CircleShape circle1, sf::CircleShape circle2) {
+    sf::Vector2<float> circle1Center{ (circle1.getPosition().x + circle1.getRadius()) , (circle1.getPosition().y + circle1.getRadius()) };
+    sf::Vector2<float> circle2Center{ (circle2.getPosition().x + circle2.getRadius()) , (circle2.getPosition().y + circle2.getRadius()) };
+
+    return normalizeVector( circle1Center - circle2Center );
+}
+*/

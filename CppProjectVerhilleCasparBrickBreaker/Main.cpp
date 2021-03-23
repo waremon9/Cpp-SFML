@@ -7,7 +7,9 @@
 
 void createBall();
 
+//global
 sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
+float deltaTime;
 
 std::vector<Ball*> AllBalls;
 std::vector<Block*> AllBricks;
@@ -36,8 +38,9 @@ int main()
     {
 
         sf::Time dt = deltaClock.restart();
+        deltaTime = dt.asMilliseconds() / 1000.f;
 
-        std::cout << dt.asMilliseconds() << "\n";
+        std::cout << deltaTime << "\n";
 
         //Process event
         sf::Event event;
@@ -70,7 +73,7 @@ int main()
 }
 
 void createBall() {
-    float speed = RandomInt(5, 8);
+    float speed = RandomInt(500,800);
     sf::Vector2<float> pos{ (float)RandomInt(0,window.getSize().x - 40), (float)RandomInt(0,window.getSize().y - 40) };
     float angle = RandomInt(0, 359);
     AllBalls.push_back(new Ball(speed, pos, angle));

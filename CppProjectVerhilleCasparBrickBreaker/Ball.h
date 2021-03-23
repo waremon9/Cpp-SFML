@@ -8,13 +8,16 @@ class Block;
 class Ball
 {
 private:
-	sf::CircleShape* Circle = new sf::CircleShape{ 20,20 };
+	sf::CircleShape* Circle = new sf::CircleShape{ 20, 20 };
 	float Velocity;
 	sf::Vector2<float> Direction;
 	sf::Vector2<float> Position;
 
 	bool intersects(sf::CircleShape, sf::RectangleShape);
+	void whichSide(sf::CircleShape circle, sf::RectangleShape rect);
 	bool intersects(sf::CircleShape, sf::CircleShape);
+
+	//sf::Vector2<float> ballNormal(sf::CircleShape circle1, sf::CircleShape circle2);
 
 public:
 	Ball(float, sf::Vector2<float>, float); //speed, position, launchAngle

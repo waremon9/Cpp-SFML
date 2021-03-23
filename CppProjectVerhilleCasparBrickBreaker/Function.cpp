@@ -29,3 +29,8 @@ sf::Vector2<float> getNormalVector(sf::Vector2<float> segStart, sf::Vector2<floa
 float dotProduct(sf::Vector2<float> vect1, sf::Vector2<float> vect2) {
     return vect1.x * vect2.x + vect1.y * vect2.y;
 }
+
+//return the distance between 2 points
+float distance2Points(sf::Vector2<float> p1, sf::Vector2<float> p2) {
+    return abs(sqrt((p2.x - p1.x)* (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)));
+}
