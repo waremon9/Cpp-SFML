@@ -19,6 +19,8 @@ int main()
     //window
     window.setFramerateLimit(60);
 
+    sf::Clock deltaClock;
+
     //ball
     for (int i = 0; i < 10; i++) {
         createBall();
@@ -32,6 +34,11 @@ int main()
     //game loop
     while (window.isOpen())
     {
+
+        sf::Time dt = deltaClock.restart();
+
+        std::cout << dt.asMilliseconds() << "\n";
+
         //Process event
         sf::Event event;
         while (window.pollEvent(event))

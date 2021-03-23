@@ -4,24 +4,26 @@
 
 Ball::Ball(float speed, sf::Vector2<float> position, float angle)
 {
-    BaseSpeed = speed;
+    Velocity = speed;
     Position = position;
     Circle->setPosition(Position);
-    Velocity = sf::Vector2<float> { BaseSpeed * cos(angle), BaseSpeed * sin(angle) };
+    Direction = normalizeVector(sf::Vector2<float> { cos(angle), sin(angle) });
+
+    Direction * 2.0f;
 }
 
 //take the surface normal of obstacle and change velocity so the ball bounce
 void Ball::Bounce( sf::Vector2<float> n) {
     //split velocity into u perpendiculat to surface and w parallel to it
-    sf::Vector2<float> u = dotProduct(Velocity, n) * n;
-    sf::Vector2<float> w = Velocity - u;
+    sf::Vector2<float> u = dotProduct(Direction, n) * n;
+    sf::Vector2<float> w = Direction - u;
     //update ballSpeed
-    Velocity = w - u;
+    Direction = w - u;
 }
 
 void Ball::Move() {
     //update ball position
-    Position += Velocity;
+    Position += Direction * Velocity;
     Circle->setPosition(Position);
 
     //screen bound
@@ -36,17 +38,19 @@ void Ball::CheckColisions(std::vector<Block*> allBricks, std::vector<Ball*> allB
 {
     for (Block* b : allBricks) {
         if (intersects(*Circle, b->getShape())) {
-            Velocity.x *= -1;
-            Velocity.y *= -1;
+            Direction *= -1.f;
         }
     }
 
     for (Ball* b : allBalls) {
         if (b->getPosition() != Position) {//not checking with herself
             if (intersects(*Circle, b->getShape())) {
-                sf::Vector2<float> tmp = Velocity;
+                sf::Vector2<float> tmpDir = Direction;
+                Direction = b->getDirection();
+                b->setDirection(tmpDir);
+                float tmpVel = Velocity;
                 Velocity = b->getVelocity();
-                b->setVelocity(tmp);
+                b->setVelocity(tmpVel);
             }
         }
     }

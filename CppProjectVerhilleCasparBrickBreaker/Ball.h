@@ -9,8 +9,8 @@ class Ball
 {
 private:
 	sf::CircleShape* Circle = new sf::CircleShape{ 20,20 };
-	float BaseSpeed;
-	sf::Vector2<float> Velocity;
+	float Velocity;
+	sf::Vector2<float> Direction;
 	sf::Vector2<float> Position;
 
 	bool intersects(sf::CircleShape, sf::RectangleShape);
@@ -21,9 +21,11 @@ public:
 
 	sf::CircleShape getShape() { return *Circle; }
 	sf::Vector2<float> getPosition() { return Position; }
-	sf::Vector2<float> getVelocity() { return Velocity; }
+	sf::Vector2<float> getDirection() { return Direction; }
+	float getVelocity() { return Velocity; }
 
-	void setVelocity(sf::Vector2<float> v) { Velocity = v; }
+	void setDirection(sf::Vector2<float> d) { Direction = d; }
+	void setVelocity(float v) { Velocity = v; }
 
 	void Bounce(sf::Vector2<float>);
 	void Move();
