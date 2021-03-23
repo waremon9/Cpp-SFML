@@ -4,6 +4,9 @@
 
 class Entity
 {
+public:
+	enum class Side{ TOP, BOTTOM, LEFT, RIGHT };
+	
 protected:
 	sf::Vector2<float> Position;
 	sf::Shape* _Shape;
@@ -14,5 +17,6 @@ public:
 	sf::Shape* getShape() const { return _Shape;}
 
 	void draw() const { window.draw(*_Shape); }
+
 };
 

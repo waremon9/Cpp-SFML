@@ -18,8 +18,6 @@ int main()
 {
     srand(time(NULL));//make random really random
 
-    //window
-
     sf::Clock deltaClock;
 
     //ball
@@ -27,10 +25,18 @@ int main()
         createBall();
     }
 
+    sf::Font font;
+    font.loadFromFile("ARIAL.TTF");
+    sf::Text text("BUG SHOWCASE !!!", font);
+    text.setCharacterSize(50);
+    text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::Red);
+
+
     //bricks
-    AllBricks.push_back(new Block(sf::Vector2<float>{200, 200}));
-    AllBricks.push_back(new Block(sf::Vector2<float>{600, 200}));
-    AllBricks.push_back(new Block(sf::Vector2<float>{500, 400}));
+    AllBricks.push_back(new Block(sf::Vector2f{200, 200}));
+    AllBricks.push_back(new Block(sf::Vector2f{600, 200}));
+    AllBricks.push_back(new Block(sf::Vector2f{500, 400}));
 
     //game loop
     while (window.isOpen())
@@ -46,10 +52,12 @@ int main()
                 window.close();
         }
 
-        for (Ball* b : AllBalls) {
-            b->CheckCollisions(AllBricks, AllBalls);
+        for (Ball* b : AllBalls) 
+        {
             b->Move();
         }
+
+        CheckCollisions(AllBricks, AllBalls);
 
         // Clear screen
         window.clear();
@@ -60,6 +68,7 @@ int main()
         for (Block* b : AllBricks) {
             b->draw();
         }
+        window.draw(text);
 
         // Update the window
         window.display();
@@ -69,7 +78,7 @@ int main()
 }
 
 void createBall() {
-    float speed = RandomInt(500,800);
+    float speed = RandomInt(400,800);
     sf::Vector2<float> pos{ (float)RandomInt(0,window.getSize().x - 40), (float)RandomInt(0,window.getSize().y - 40) };
     float angle = RandomInt(0, 359);
     AllBalls.push_back(new Ball(speed, pos, angle));
