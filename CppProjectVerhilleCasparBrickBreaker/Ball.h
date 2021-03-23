@@ -2,38 +2,36 @@
 #include <SFML/Graphics.hpp>
 #include "Global.h"
 #include "Function.h"
+#include "Entity.h"
 
 class Block;
 
-class Ball
+class Ball : public Entity
 {
 private:
-	sf::CircleShape* Circle = new sf::CircleShape{ 20, 20 };
+	
 	float Velocity;
 	sf::Vector2<float> Direction;
-	sf::Vector2<float> Position;
+	float Radius = 20;
 
-	bool intersects(sf::CircleShape, sf::RectangleShape);
-	void whichSide(sf::CircleShape circle, sf::RectangleShape rect);
-	bool intersects(sf::CircleShape, sf::CircleShape);
+	std::vector<Entity*> CollisionVector;
 
-	//sf::Vector2<float> ballNormal(sf::CircleShape circle1, sf::CircleShape circle2);
+	bool intersects(const Entity*) const;
+	void whichSide(const Entity*);
+	bool ballIntersects(const Entity*) const;
 
 public:
 	Ball(float, sf::Vector2<float>, float); //speed, position, launchAngle
 
-	sf::CircleShape getShape() { return *Circle; }
-	sf::Vector2<float> getPosition() { return Position; }
 	sf::Vector2<float> getDirection() { return Direction; }
 	float getVelocity() { return Velocity; }
+	float getRadius() { return Radius; }
 
 	void setDirection(sf::Vector2<float> d) { Direction = d; }
 	void setVelocity(float v) { Velocity = v; }
 
 	void Bounce(sf::Vector2<float>);
 	void Move();
-	void CheckColisions(std::vector<Block*>, std::vector<Ball*>);
-
-	void draw() { window.draw(*Circle); }
+	void CheckCollisions(std::vector<Block*>, std::vector<Ball*>);
 };
 

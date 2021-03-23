@@ -34,3 +34,12 @@ float dotProduct(sf::Vector2<float> vect1, sf::Vector2<float> vect2) {
 float distance2Points(sf::Vector2<float> p1, sf::Vector2<float> p2) {
     return abs(sqrt((p2.x - p1.x)* (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)));
 }
+
+#include <algorithm>
+
+bool vectorContain(std::vector<Entity*> v, Entity* elem) {
+    if (std::find(v.begin(), v.end(), elem) != v.end()) {
+        return true;
+    }
+    return false;
+}

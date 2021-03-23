@@ -40,8 +40,6 @@ int main()
         sf::Time dt = deltaClock.restart();
         deltaTime = dt.asMilliseconds() / 1000.f;
 
-        std::cout << deltaTime << "\n";
-
         //Process event
         sf::Event event;
         while (window.pollEvent(event))
@@ -51,8 +49,8 @@ int main()
         }
 
         for (Ball* b : AllBalls) {
+            b->CheckCollisions(AllBricks, AllBalls);
             b->Move();
-            b->CheckColisions(AllBricks, AllBalls);
         }
 
         // Clear screen
