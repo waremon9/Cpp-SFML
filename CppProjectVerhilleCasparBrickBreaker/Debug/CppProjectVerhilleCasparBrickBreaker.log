@@ -1,5 +1,21 @@
-﻿  Function.cpp
-C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Function.cpp(15,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Function.cpp(128,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\tverhille\Documents\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Function.cpp(72): warning C4715: 'whichSide': not all control paths return a value
-  CppProjectVerhilleCasparBrickBreaker.vcxproj -> C:\Users\tverhille\Documents\C++\Cpp-SFML\Debug\CppProjectVerhilleCasparBrickBreaker.exe
+﻿  Canon.cpp
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(8,66): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(8,45): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(18,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  CppProjectVerhilleCasparBrickBreaker.vcxproj -> D:\VisualStudio2019\C++\Cpp-SFML\Debug\CppProjectVerhilleCasparBrickBreaker.exe

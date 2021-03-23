@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(sf::Vector2<float> pos)
+Entity::Entity(sf::Vector2f pos)
 {
 	Position = pos;
 }

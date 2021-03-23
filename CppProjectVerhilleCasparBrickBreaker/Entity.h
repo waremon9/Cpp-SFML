@@ -9,14 +9,16 @@ public:
 	
 protected:
 	sf::Vector2<float> Position;
-	sf::Shape* _Shape;
+	sf::Shape* _Shape = nullptr;
 
 public:
-	Entity(sf::Vector2<float>);
+	Entity() {};
+	Entity(sf::Vector2f pos);
 	sf::Vector2<float> getPosition() const { return Position; }
 	sf::Shape* getShape() const { return _Shape;}
 
 	void draw() const { window.draw(*_Shape); }
+
 
 };
 

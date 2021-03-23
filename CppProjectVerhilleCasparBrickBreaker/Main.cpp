@@ -4,6 +4,7 @@
 #include "Function.h"
 #include "Ball.h"
 #include "Block.h"
+#include "Canon.h"
 
 void createBall();
 
@@ -21,22 +22,18 @@ int main()
     sf::Clock deltaClock;
 
     //ball
+    /*
     for (int i = 0; i < 10; i++) {
         createBall();
-    }
-
-    sf::Font font;
-    font.loadFromFile("ARIAL.TTF");
-    sf::Text text("BUG SHOWCASE !!!", font);
-    text.setCharacterSize(50);
-    text.setStyle(sf::Text::Bold);
-    text.setFillColor(sf::Color::Red);
-
+    }*/
 
     //bricks
     AllBricks.push_back(new Block(sf::Vector2f{200, 200}));
     AllBricks.push_back(new Block(sf::Vector2f{600, 200}));
     AllBricks.push_back(new Block(sf::Vector2f{500, 400}));
+
+    //Canon
+    Canon* canon = new Canon();
 
     //game loop
     while (window.isOpen())
@@ -50,6 +47,19 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            if (event.type == sf::Event::MouseMoved) {
+                sf::Vector2f vect((sf::Vector2f)sf::Mouse::getPosition(window) - canon->getPosition());
+                canon->setRotation(atan2(vect.y, vect.x));
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    canon->shoot();
+                }
+            }
         }
 
         for (Ball* b : AllBalls) 
@@ -68,7 +78,8 @@ int main()
         for (Block* b : AllBricks) {
             b->draw();
         }
-        window.draw(text);
+
+        canon->draw();
 
         // Update the window
         window.display();

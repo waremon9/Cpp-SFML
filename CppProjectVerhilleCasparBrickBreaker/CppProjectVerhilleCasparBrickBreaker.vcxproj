@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Canon.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Global.h" />
