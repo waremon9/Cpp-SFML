@@ -7,53 +7,69 @@
     <Filter Include="header">
       <UniqueIdentifier>{aa2323c0-ff04-4bb1-b596-971ba2863832}</UniqueIdentifier>
     </Filter>
+    <Filter Include="cpp\Class">
+      <UniqueIdentifier>{fd496728-ac44-4b19-9b54-de00c5b52506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\Class">
+      <UniqueIdentifier>{2d1dccbc-68a9-489b-8486-785e9b9b5b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp\Class\Bricks">
+      <UniqueIdentifier>{8b75f45b-294e-45f6-ab0b-0b50f5dd89fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\Class\Bricks">
+      <UniqueIdentifier>{a4119f06-405e-4afa-ab13-6523558184f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Function.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>cpp</Filter>
+    <ClCompile Include="GameBorder.cpp">
+      <Filter>cpp\Class</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>cpp</Filter>
+    <ClCompile Include="Ball.cpp">
+      <Filter>cpp\Class</Filter>
     </ClCompile>
     <ClCompile Include="Canon.cpp">
-      <Filter>cpp</Filter>
+      <Filter>cpp\Class</Filter>
     </ClCompile>
-    <ClCompile Include="GameBorder.cpp">
-      <Filter>cpp</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>cpp\Class</Filter>
     </ClCompile>
-    <ClCompile Include="LifeBrick.cpp" />
+    <ClCompile Include="Brick.cpp">
+      <Filter>cpp\Class\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeBrick.cpp">
+      <Filter>cpp\Class\Bricks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h">
-      <Filter>header</Filter>
-    </ClInclude>
     <ClInclude Include="Function.h">
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>header</Filter>
+    <ClInclude Include="Ball.h">
+      <Filter>header\Class</Filter>
     </ClInclude>
     <ClInclude Include="Canon.h">
-      <Filter>header</Filter>
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>header\Class</Filter>
     </ClInclude>
     <ClInclude Include="GameBorder.h">
-      <Filter>header</Filter>
+      <Filter>header\Class</Filter>
     </ClInclude>
-    <ClInclude Include="LifeBrick.h" />
+    <ClInclude Include="Brick.h">
+      <Filter>header\Class\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeBrick.h">
+      <Filter>header\Class\Bricks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

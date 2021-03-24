@@ -39,7 +39,7 @@ int main()
                 AllBricks.push_back(new Brick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
             }
             else {
-                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, 3, MLFont));
+                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(3,5), MLFont));
             }
         }
     }
