@@ -19,3 +19,4 @@ Entity::Side whichSide(const Entity*, const Entity*);
 bool ballIntersects(const Entity*, const Entity*);
 void CheckCollisions(std::vector<Block*>, std::vector<Ball*>, std::vector<GameBorder*>);
 void removeOuOfBoundBall();
+void removeDeadBlock();

@@ -5,8 +5,14 @@
 
 class Block : public Entity
 {
+protected:
+	int Life = 1;
 
 public:
 	Block(sf::Vector2<float>); //position
+
+	int getLife() const { return Life; }
+
+	void damage() { Life--; }
 };
 

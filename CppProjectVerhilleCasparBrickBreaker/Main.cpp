@@ -31,9 +31,11 @@ int main()
     AllBorders.push_back(new GameBorder(sf::Vector2f(window.getSize().x, 0), sf::Vector2f(BorderThickness, window.getSize().y)));//right
 
     //bricks
-    AllBricks.push_back(new Block(sf::Vector2f{200, 200}));
-    AllBricks.push_back(new Block(sf::Vector2f{600, 200}));
-    AllBricks.push_back(new Block(sf::Vector2f{500, 400}));
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 5; j++) {
+            AllBricks.push_back(new Block(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
+        }
+    }
 
     //Canon
     Canon* canon = new Canon();
@@ -71,6 +73,8 @@ int main()
         }
 
         removeOuOfBoundBall();
+        removeDeadBlock();
+
         CheckCollisions(AllBricks, AllBalls, AllBorders);
 
 

@@ -120,6 +120,7 @@ void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls,
                     }
 
                     ((Ball*)ball)->addInCollisionVector(brick);
+                    ((Block*)brick)->damage();
                 }
             }
         }
@@ -204,5 +205,22 @@ void removeOuOfBoundBall() {
     for (int i = ballToDelete.size() - 1; i >= 0; i--) {
         delete AllBalls[ballToDelete[i]];
         AllBalls.erase(AllBalls.begin() + ballToDelete[i]);
+    }
+}
+
+void removeDeadBlock() {
+    std::vector<int> blockToDelete;
+    int index = 0;
+
+    for (Block* b : AllBricks) {
+        if (b->getLife() <= 0) {
+            blockToDelete.push_back(index);
+        }
+        index++;
+    }
+
+    for (int i = blockToDelete.size() - 1; i >= 0; i--) {
+        delete AllBricks[blockToDelete[i]];
+        AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
     }
 }
