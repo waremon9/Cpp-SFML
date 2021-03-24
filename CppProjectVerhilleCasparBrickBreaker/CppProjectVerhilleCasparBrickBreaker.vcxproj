@@ -150,21 +150,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="GameBorder.cpp" />
+    <ClCompile Include="LifeBrick.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="Block.h" />
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="GameBorder.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="LifeBrick.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

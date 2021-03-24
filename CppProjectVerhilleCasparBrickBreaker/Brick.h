@@ -3,13 +3,13 @@
 #include "Global.h"
 #include "Entity.h"
 
-class Block : public Entity
+class Brick : public Entity
 {
 protected:
 	int Life = 1;
 
 public:
-	Block(sf::Vector2<float>); //position
+	Brick(sf::Vector2<float>); //position
 
 	int getLife() const { return Life; }
 

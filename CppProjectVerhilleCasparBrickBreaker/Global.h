@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 
 class Ball;
-class Block;
+class Brick;
 
 extern sf::RenderWindow window;
 extern float deltaTime;
 extern std::vector<Ball*> AllBalls;
-extern std::vector<Block*> AllBricks;
+extern std::vector<Brick*> AllBricks;

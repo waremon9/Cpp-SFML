@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
-#include "Block.h"
+#include "Brick.h"
+#include "LifeBrick.h"
 #include "Ball.h"
 #include "GameBorder.h"
 
@@ -17,6 +18,6 @@ bool vectorContain(const std::vector<Entity*>& , Entity*);
 bool intersects(const Entity*, const Entity*);
 Entity::Side whichSide(const Entity*, const Entity*);
 bool ballIntersects(const Entity*, const Entity*);
-void CheckCollisions(std::vector<Block*>, std::vector<Ball*>, std::vector<GameBorder*>);
+void CheckCollisions(std::vector<Brick*>, std::vector<Ball*>, std::vector<GameBorder*>);
 void removeOuOfBoundBall();
 void removeDeadBlock();

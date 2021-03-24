@@ -18,7 +18,7 @@
     <ClCompile Include="Function.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
+    <ClCompile Include="Brick.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
@@ -27,7 +27,10 @@
     <ClCompile Include="Canon.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="GameBorder.cpp" />
+    <ClCompile Include="GameBorder.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeBrick.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -39,7 +42,7 @@
     <ClInclude Include="Global.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="Brick.h">
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
@@ -48,6 +51,9 @@
     <ClInclude Include="Canon.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="GameBorder.h" />
+    <ClInclude Include="GameBorder.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeBrick.h" />
   </ItemGroup>
 </Project>

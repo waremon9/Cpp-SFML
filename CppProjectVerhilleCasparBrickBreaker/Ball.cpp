@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include <iostream>
-#include "Block.h"
+
+class Brick;
 
 Ball::Ball(float speed, sf::Vector2<float> position, float angle) : Entity(position)
 {

@@ -83,22 +83,22 @@ bool ballIntersects(const Entity* E1, const Entity* E2) {
     return distance < Bound1.width / 2 + Bound2.width / 2;
 }
 
-void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls, std::vector<GameBorder*> allBorders)
+void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls, std::vector<GameBorder*> allBorders)
 {
     int ballIndex = 1;
-    for (Entity* ball : allBalls) {
+    for (Ball* ball : allBalls) {
 
         bool hitSomething = false;
 
-        for (Entity* brick : allBricks)
+        for (Brick* brick : allBricks)
         {
             if (intersects(ball, brick))
             {
-                if (!vectorContain(((Ball*)ball)->getCollisionVector(), brick))
+                if (!vectorContain(ball->getCollisionVector(), brick))
                 {
                     if (!hitSomething)
                     {//first hit, update direction
-                        ((Ball*)ball)->clearInCollisionVector();
+                        ball->clearInCollisionVector();
 
                         Entity::Side result = whichSide(ball, brick);
 
@@ -106,11 +106,11 @@ void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls,
                         {
                         case Entity::Side::TOP:
                         case Entity::Side::BOTTOM:
-                            ((Ball*)ball)->inverseDirectionY();
+                            ball->inverseDirectionY();
                             break;
                         case Entity::Side::LEFT:
                         case Entity::Side::RIGHT:
-                            ((Ball*)ball)->inverseDirectionX();
+                            ball->inverseDirectionX();
                             break;
                         default:
                             break;
@@ -119,8 +119,11 @@ void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls,
                         hitSomething = true;
                     }
 
-                    ((Ball*)ball)->addInCollisionVector(brick);
-                    ((Block*)brick)->damage();
+                    ball->addInCollisionVector(brick);
+                    brick->damage();
+                    //((LifeBrick*)brick)->damage(); //if only LifeBrick
+
+
                 }
             }
         }
@@ -212,7 +215,7 @@ void removeDeadBlock() {
     std::vector<int> blockToDelete;
     int index = 0;
 
-    for (Block* b : AllBricks) {
+    for (Brick* b : AllBricks) {
         if (b->getLife() <= 0) {
             blockToDelete.push_back(index);
         }

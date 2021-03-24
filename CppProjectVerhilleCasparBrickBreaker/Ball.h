@@ -4,7 +4,7 @@
 #include "Function.h"
 #include "Entity.h"
 
-class Block;
+class Brick;
 
 class Ball : public Entity
 {

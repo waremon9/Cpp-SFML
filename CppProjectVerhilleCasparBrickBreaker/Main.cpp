@@ -3,7 +3,8 @@
 #include "Global.h"
 #include "Function.h"
 #include "Ball.h"
-#include "Block.h"
+#include "Brick.h"
+#include "LifeBrick.h"
 #include "Canon.h"
 #include "GameBorder.h"
 
@@ -14,15 +15,16 @@ sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
 float deltaTime;
 
 std::vector<Ball*> AllBalls;
-std::vector<Block*> AllBricks;
+std::vector<Brick*> AllBricks;
 std::vector<GameBorder*> AllBorders;
 
 int main()
 {
-    srand(time(NULL));//make random really random
 
     sf::Clock deltaClock;
 
+    sf::Font* MLFont = new sf::Font;
+    MLFont->loadFromFile("MarioLuigi2.ttf");
 
     float BorderThickness = 10;
     //Borders
@@ -33,7 +35,7 @@ int main()
     //bricks
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 5; j++) {
-            AllBricks.push_back(new Block(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
+            AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, 3, MLFont));
         }
     }
 
@@ -84,8 +86,8 @@ int main()
         for (Ball* b : AllBalls) {
             b->draw();
         }
-        for (Block* b : AllBricks) {
-            b->draw();
+        for (Brick* b : AllBricks) {
+            ((LifeBrick*)b)->draw();
         }
 
         canon->draw();
@@ -93,7 +95,6 @@ int main()
         for (GameBorder* b : AllBorders) {
             b->draw();
         }
-
         // Update the window
         window.display();
     }
