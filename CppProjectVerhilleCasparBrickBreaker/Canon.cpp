@@ -21,6 +21,8 @@ void Canon::setRotation(float angle)
 
 void Canon::shoot()
 {
-	Ball* ball = new Ball(400, Position + Direction * ((sf::RectangleShape*)_Shape)->getSize().y, Angle);
+	Ball* ball = new Ball(400, sf::Vector2f(0,0), Angle);
+	ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
+	ball->setPosition(Position + Direction * (((sf::RectangleShape*)_Shape)->getSize().y - ball->getRadius()));
 	AllBalls.push_back(ball);
 }
