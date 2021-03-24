@@ -12,7 +12,7 @@ private:
 public:
 	LifeBrick(sf::Vector2f, int, sf::Font*);//Position, Life amount
 
-	void draw() const ;
-	void damage();
+	void draw() const override;
+	void damage() override;
 };
 

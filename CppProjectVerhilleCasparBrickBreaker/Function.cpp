@@ -121,9 +121,6 @@ void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls,
 
                     ball->addInCollisionVector(brick);
                     brick->damage();
-                    //((LifeBrick*)brick)->damage(); //if only LifeBrick
-
-
                 }
             }
         }

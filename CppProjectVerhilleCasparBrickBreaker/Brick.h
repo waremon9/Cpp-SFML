@@ -13,6 +13,6 @@ public:
 
 	int getLife() const { return Life; }
 
-	void damage() { Life--; }
+	virtual void damage() { Life--; }
 };
 

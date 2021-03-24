@@ -38,6 +38,7 @@ int main()
             AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, 3, MLFont));
         }
     }
+    AllBricks.push_back(new Brick(sf::Vector2f{ 500,500 }));
 
     //Canon
     Canon* canon = new Canon();
@@ -87,7 +88,7 @@ int main()
             b->draw();
         }
         for (Brick* b : AllBricks) {
-            ((LifeBrick*)b)->draw();
+            b->draw();
         }
 
         canon->draw();

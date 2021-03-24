@@ -3,7 +3,7 @@
 #include <iostream>
 
 class Brick;
-
+class Entity;
 
 LifeBrick::LifeBrick(sf::Vector2f pos, int life, sf::Font* font) : Brick(pos)
 {
@@ -30,7 +30,8 @@ void LifeBrick::draw() const {
 	window.draw(*TextNumber);
 }
 
-void LifeBrick::damage() {
+void LifeBrick::damage()
+{
 	Brick::damage();
 	UpdateTextNumber();
 }
