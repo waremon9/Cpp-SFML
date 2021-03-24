@@ -70,6 +70,7 @@ int main()
             b->Move();
         }
 
+        removeOuOfBoundBall();
         CheckCollisions(AllBricks, AllBalls, AllBorders);
 
         // Clear screen

@@ -3,6 +3,7 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 #include <algorithm>
+#include <iostream>
 
 //return random int between min(include) and max(include)
 int RandomInt(int min, int max) {
@@ -187,4 +188,21 @@ void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls,
     
 
     
+}
+
+void removeOuOfBoundBall() {
+    std::vector<int> ballToDelete;
+    int index = 0;
+
+    for (Ball* b : AllBalls) {
+        if (b->getPosition().y>window.getSize().y + b->getRadius()) {
+            ballToDelete.push_back(index);
+        }
+        index++;
+    }
+
+    for (int i = ballToDelete.size() - 1; i >= 0; i--) {
+        AllBalls.erase(AllBalls.begin() + ballToDelete[i]);
+        std::cout << "delete\nball alive : " << AllBalls.size() << "\n";
+    }
 }
