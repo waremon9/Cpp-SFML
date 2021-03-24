@@ -25,22 +25,4 @@ void Ball::Move() {
     //update ball position
     Position += Direction * Velocity * deltaTime;
     _Shape->setPosition(Position);
-
-    //screen bound
-    if (Position.x < 0) {
-        CollisionVector.clear();
-        Direction.x *= -1;
-    }
-    if (Position.x > window.getSize().x - Radius * 2) {
-        CollisionVector.clear();
-        Direction.x *= -1;
-    }
-    if (Position.y < 0) {
-        CollisionVector.clear();
-        Direction.y *= -1;
-    }
-    if (Position.y > window.getSize().y - Radius * 2) {
-        CollisionVector.clear();
-        Direction.y *= -1;
-    }
 }

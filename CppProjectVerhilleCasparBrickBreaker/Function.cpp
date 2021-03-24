@@ -3,7 +3,6 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 #include <algorithm>
-#include "Ball.h"
 
 //return random int between min(include) and max(include)
 int RandomInt(int min, int max) {
@@ -83,7 +82,7 @@ bool ballIntersects(const Entity* E1, const Entity* E2) {
     return distance < Bound1.width / 2 + Bound2.width / 2;
 }
 
-void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls)
+void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls, std::vector<GameBorder*> allBorders)
 {
     int ballIndex = 1;
     for (Entity* ball : allBalls) {
@@ -120,6 +119,40 @@ void CheckCollisions(std::vector<Block*> allBricks, std::vector<Ball*> allBalls)
                     }
 
                     ((Ball*)ball)->addInCollisionVector(brick);
+                }
+            }
+        }
+
+        for (Entity* border : allBorders)
+        {
+            if (intersects(ball, border))
+            {
+                if (!vectorContain(((Ball*)ball)->getCollisionVector(), border))
+                {
+                    if (!hitSomething)
+                    {//first hit, update direction
+                        ((Ball*)ball)->clearInCollisionVector();
+
+                        Entity::Side result = whichSide(ball, border);
+
+                        switch (result)
+                        {
+                        case Entity::Side::TOP:
+                        case Entity::Side::BOTTOM:
+                            ((Ball*)ball)->inverseDirectionY();
+                            break;
+                        case Entity::Side::LEFT:
+                        case Entity::Side::RIGHT:
+                            ((Ball*)ball)->inverseDirectionX();
+                            break;
+                        default:
+                            break;
+                        }
+
+                        hitSomething = true;
+                    }
+
+                    ((Ball*)ball)->addInCollisionVector(border);
                 }
             }
         }

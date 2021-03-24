@@ -24,7 +24,10 @@
     <ClCompile Include="Entity.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Canon.cpp" />
+    <ClCompile Include="Canon.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBorder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -42,6 +45,9 @@
     <ClInclude Include="Entity.h">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="Canon.h" />
+    <ClInclude Include="Canon.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBorder.h" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "Block.h"
 #include "Canon.h"
+#include "GameBorder.h"
 
 void createBall();
 
@@ -14,6 +15,7 @@ float deltaTime;
 
 std::vector<Ball*> AllBalls;
 std::vector<Block*> AllBricks;
+std::vector<GameBorder*> AllBorders;
 
 int main()
 {
@@ -21,11 +23,12 @@ int main()
 
     sf::Clock deltaClock;
 
-    //ball
-    /*
-    for (int i = 0; i < 10; i++) {
-        createBall();
-    }*/
+
+    float BorderThickness = 10;
+    //Borders
+    AllBorders.push_back(new GameBorder(sf::Vector2f(0, -BorderThickness), sf::Vector2f(window.getSize().x, BorderThickness)));//top
+    AllBorders.push_back(new GameBorder(sf::Vector2f(-BorderThickness, 0), sf::Vector2f(BorderThickness, window.getSize().y)));//left
+    AllBorders.push_back(new GameBorder(sf::Vector2f(window.getSize().x, 0), sf::Vector2f(BorderThickness, window.getSize().y)));//right
 
     //bricks
     AllBricks.push_back(new Block(sf::Vector2f{200, 200}));
@@ -67,7 +70,7 @@ int main()
             b->Move();
         }
 
-        CheckCollisions(AllBricks, AllBalls);
+        CheckCollisions(AllBricks, AllBalls, AllBorders);
 
         // Clear screen
         window.clear();
@@ -80,6 +83,10 @@ int main()
         }
 
         canon->draw();
+
+        for (GameBorder* b : AllBorders) {
+            b->draw();
+        }
 
         // Update the window
         window.display();

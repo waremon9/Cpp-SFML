@@ -1,5 +1,6 @@
-﻿  Canon.cpp
-D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(8,66): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+﻿  Main.cpp
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(22,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(29,105): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -8,7 +9,7 @@ D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(
           [
               T=float
           ]
-D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(8,45): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(30,122): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -17,5 +18,24 @@ D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(
           [
               T=float
           ]
-D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Canon.cpp(18,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(31,70): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(31,124): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(99,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\VisualStudio2019\C++\Cpp-SFML\CppProjectVerhilleCasparBrickBreaker\Main.cpp(101,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   CppProjectVerhilleCasparBrickBreaker.vcxproj -> D:\VisualStudio2019\C++\Cpp-SFML\Debug\CppProjectVerhilleCasparBrickBreaker.exe
