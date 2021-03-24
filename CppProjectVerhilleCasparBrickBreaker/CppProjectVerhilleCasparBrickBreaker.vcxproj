@@ -157,6 +157,7 @@
     <ClCompile Include="GameBorder.cpp" />
     <ClCompile Include="LifeBrick.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RegenBrick.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="GameBorder.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="LifeBrick.h" />
+    <ClInclude Include="RegenBrick.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -45,6 +45,7 @@
     <ClCompile Include="LifeBrick.cpp">
       <Filter>cpp\Class\Bricks</Filter>
     </ClCompile>
+    <ClCompile Include="RegenBrick.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -71,5 +72,6 @@
     <ClInclude Include="LifeBrick.h">
       <Filter>header\Class\Bricks</Filter>
     </ClInclude>
+    <ClInclude Include="RegenBrick.h" />
   </ItemGroup>
 </Project>

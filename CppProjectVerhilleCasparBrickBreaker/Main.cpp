@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "Brick.h"
 #include "LifeBrick.h"
+#include "RegenBrick.h"
 #include "Canon.h"
 #include "GameBorder.h"
 
@@ -35,11 +36,19 @@ int main()
     //bricks
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 5; j++) {
-            if (RandomInt(0, 1) % 2 == 0) {
+            switch (RandomInt(0,2) % 3)
+            {
+            case 0:
                 AllBricks.push_back(new Brick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
-            }
-            else {
-                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(3,5), MLFont));
+                break;
+            case 1:
+                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(3, 5), MLFont));
+                break;
+            case 2:
+                AllBricks.push_back(new RegenBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(2, 3), MLFont));
+                break;
+            default:
+                break;
             }
         }
     }

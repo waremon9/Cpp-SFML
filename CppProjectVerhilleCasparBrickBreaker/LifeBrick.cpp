@@ -8,6 +8,10 @@ class Entity;
 LifeBrick::LifeBrick(sf::Vector2f pos, int life, sf::Font* font) : Brick(pos)
 {
 	Life = life;
+
+	FillColor = sf::Color(255, 60, 60);
+	OutlineColor = sf::Color(255, 180, 180);
+
 	_Shape->setFillColor(FillColor);
 	_Shape->setOutlineColor(OutlineColor);
 

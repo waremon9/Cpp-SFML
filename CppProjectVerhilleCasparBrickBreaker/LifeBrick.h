@@ -4,11 +4,8 @@
 //brick with more than 1 life
 class LifeBrick : public Brick
 {
-private:
+protected:
 	sf::Text* TextNumber = new sf::Text;
-
-	sf::Color FillColor = sf::Color(255, 60, 60);
-	sf::Color OutlineColor = sf::Color(255, 180, 180);
 
 	void UpdateTextNumber();
 

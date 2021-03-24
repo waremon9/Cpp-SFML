@@ -8,6 +8,9 @@ class Brick : public Entity
 protected:
 	int Life = 1;
 
+	sf::Color FillColor;
+	sf::Color OutlineColor;
+
 public:
 	Brick(sf::Vector2<float>); //position
 
