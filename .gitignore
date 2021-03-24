@@ -1,2 +1,6 @@
 .vs/
 *.dll
+*/x64
+*/Debug
+x64
+Debug

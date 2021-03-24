@@ -14,15 +14,24 @@ Canon::Canon()
 
 void Canon::setRotation(float angle)
 {
-	Angle = angle;
-	_Shape->setRotation(Angle * 180 / 3.1415 + 90);
-	Direction = normalizeVector(sf::Vector2<float> { cos(angle), sin(angle) });
+	float calculatedAngle = angle * 180 / 3.1415 + 90;
+	if (calculatedAngle >= -70 && calculatedAngle <= 70) {
+		Angle = angle;
+		_Shape->setRotation(calculatedAngle);
+		Direction = normalizeVector(sf::Vector2<float> { cos(angle), sin(angle) });
+	}
+	
 }
 
 void Canon::shoot()
 {
-	Ball* ball = new Ball(400, sf::Vector2f(0,0), Angle);
-	ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
-	ball->setPosition(Position + Direction * (((sf::RectangleShape*)_Shape)->getSize().y - ball->getRadius()));
-	AllBalls.push_back(ball);
+	if (clock->getElapsedTime().asSeconds() > Cooldown) {
+		Ball* ball = new Ball(400, sf::Vector2f(0,0), Angle);
+		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
+		ball->setPosition(Position + Direction * (((sf::RectangleShape*)_Shape)->getSize().y - ball->getRadius()));
+		AllBalls.push_back(ball);
+
+		clock->restart();
+	}
+
 }

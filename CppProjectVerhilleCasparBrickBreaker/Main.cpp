@@ -35,10 +35,14 @@ int main()
     //bricks
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 5; j++) {
-            AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, 3, MLFont));
+            if (RandomInt(0, 1) % 2 == 0) {
+                AllBricks.push_back(new Brick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
+            }
+            else {
+                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, 3, MLFont));
+            }
         }
     }
-    AllBricks.push_back(new Brick(sf::Vector2f{ 500,500 }));
 
     //Canon
     Canon* canon = new Canon();

@@ -8,6 +8,8 @@ private:
 	float Angle = 0;
 	sf::Vector2f Direction;
 	sf::Vector2f Origin;
+	float Cooldown = 0.5;
+	sf::Clock* clock = new sf::Clock;
 
 public:
 	Canon();
