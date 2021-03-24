@@ -73,6 +73,7 @@ int main()
         removeOuOfBoundBall();
         CheckCollisions(AllBricks, AllBalls, AllBorders);
 
+
         // Clear screen
         window.clear();
         //draw everything

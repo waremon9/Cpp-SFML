@@ -202,7 +202,7 @@ void removeOuOfBoundBall() {
     }
 
     for (int i = ballToDelete.size() - 1; i >= 0; i--) {
+        delete AllBalls[ballToDelete[i]];
         AllBalls.erase(AllBalls.begin() + ballToDelete[i]);
-        std::cout << "delete\nball alive : " << AllBalls.size() << "\n";
     }
 }
