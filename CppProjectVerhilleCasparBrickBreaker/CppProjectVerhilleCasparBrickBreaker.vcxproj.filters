@@ -24,9 +24,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Function.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
     <ClCompile Include="GameBorder.cpp">
       <Filter>cpp\Class</Filter>
     </ClCompile>
@@ -48,6 +45,11 @@
     <ClCompile Include="RegenBrick.cpp">
       <Filter>cpp\Class\Bricks</Filter>
     </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeEntity.cpp" />
+    <ClCompile Include="SpriteEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -77,5 +79,7 @@
     <ClInclude Include="RegenBrick.h">
       <Filter>header\Class\Bricks</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeEntity.h" />
+    <ClInclude Include="SpriteEntity.h" />
   </ItemGroup>
 </Project>

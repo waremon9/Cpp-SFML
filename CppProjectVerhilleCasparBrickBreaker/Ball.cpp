@@ -3,7 +3,7 @@
 
 class Brick;
 
-Ball::Ball(float speed, sf::Vector2<float> position, float angle) : Entity(position)
+Ball::Ball(float speed, sf::Vector2<float> position, float angle) : ShapeEntity(position)
 {
     Velocity = speed;
     _Shape = new sf::CircleShape{ Radius, 20 };

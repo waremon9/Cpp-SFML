@@ -35,7 +35,7 @@ void Canon::shoot()
 	if (Cooldown<=0 && AllBalls.size()<3) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
-		ball->setPosition(Position + Direction * (((sf::RectangleShape*)_Shape)->getSize().y - ball->getRadius()));
+		ball->setPosition(Position + Direction * _Shape->getOrigin().y);
 		AllBalls.push_back(ball);
 
 		ResetCooldown();

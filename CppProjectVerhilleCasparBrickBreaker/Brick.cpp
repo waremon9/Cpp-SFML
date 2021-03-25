@@ -1,7 +1,9 @@
 #include "Brick.h"
 
-Brick::Brick(sf::Vector2<float> position) : Entity(position)
+Brick::Brick(sf::Vector2<float> position) : ShapeEntity(position)
 {
+	Life = 1;
+
 	_Shape = new sf::RectangleShape{ sf::Vector2f(90,40) };
 	_Shape->setPosition(Position);
 	_Shape->setOutlineThickness(-5);

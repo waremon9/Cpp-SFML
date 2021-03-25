@@ -45,8 +45,8 @@ bool vectorContain(const std::vector<Entity*>& v, Entity* elem) {
 }
 
 bool intersects(const Entity* E1, const Entity* E2)  {
-    sf::FloatRect Bound1 = E1->getShape()->getGlobalBounds();
-    sf::FloatRect Bound2 = E2->getShape()->getGlobalBounds();
+    sf::FloatRect Bound1 = E1->getGlobalBounds();
+    sf::FloatRect Bound2 = E2->getGlobalBounds();
     if (
         Bound1.left < Bound2.left + Bound2.width && 
         Bound1.left + Bound1.width > Bound2.left && 
@@ -58,8 +58,8 @@ bool intersects(const Entity* E1, const Entity* E2)  {
 }
 
 Entity::Side whichSide(const Entity* E1, const Entity* E2) {
-    sf::FloatRect Bound1 = E1->getShape()->getGlobalBounds();
-    sf::FloatRect Bound2 = E2->getShape()->getGlobalBounds();
+    sf::FloatRect Bound1 = E1->getGlobalBounds();
+    sf::FloatRect Bound2 = E2->getGlobalBounds();
     float droite = abs(Bound1.left - (Bound2.left + Bound2.width));
     float gauche = abs((Bound1.left + Bound1.width) - Bound2.left);
     float haut = abs((Bound1.top + Bound1.height) - Bound2.top);
@@ -72,8 +72,8 @@ Entity::Side whichSide(const Entity* E1, const Entity* E2) {
 }
 
 bool ballIntersects(const Entity* E1, const Entity* E2) {
-    sf::FloatRect Bound1 = E1->getShape()->getGlobalBounds();
-    sf::FloatRect Bound2 = E2->getShape()->getGlobalBounds();
+    sf::FloatRect Bound1 = E1->getGlobalBounds();
+    sf::FloatRect Bound2 = E2->getGlobalBounds();
     sf::Vector2<float> circle1Center{ (Bound1.left + Bound1.width / 2) , (Bound1.top + Bound1.height / 2) };
     sf::Vector2<float> circle2Center{ (Bound2.left + Bound2.width / 2) , (Bound2.top + Bound2.height / 2) };
 

@@ -1,12 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Global.h"
-#include "Entity.h"
+#include "ShapeEntity.h"
 
-class Brick : public Entity
+class Brick : public ShapeEntity
 {
 protected:
-	int Life = 1;
+	int Life;
 
 	sf::Color FillColor;
 	sf::Color OutlineColor;

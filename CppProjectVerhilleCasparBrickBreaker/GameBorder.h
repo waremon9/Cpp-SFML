@@ -1,8 +1,8 @@
 #pragma once
-#include "Entity.h"
+#include "ShapeEntity.h"
 
 //Border is not a line to reduce risk of ball passing through due to lag
-class GameBorder : public Entity
+class GameBorder : public ShapeEntity
 {
 
 public:

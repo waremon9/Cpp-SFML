@@ -1,8 +1,8 @@
 #define _USE_MATH_DEFINES
 #pragma once
-#include "Entity.h"
+#include "ShapeEntity.h"
 
-class Canon : public Entity
+class Canon : public ShapeEntity
 {
 private:
 	float Angle;

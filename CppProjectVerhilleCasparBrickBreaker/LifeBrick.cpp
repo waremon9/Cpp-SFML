@@ -30,7 +30,7 @@ void LifeBrick::UpdateTextNumber()
 }
 
 void LifeBrick::draw() const {
-	Entity::draw();
+	Brick::draw();
 	window.draw(*TextNumber);
 }
 
