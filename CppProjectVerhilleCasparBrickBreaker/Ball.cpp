@@ -3,11 +3,19 @@
 
 class Brick;
 
-Ball::Ball(float speed, sf::Vector2<float> position, float angle) : ShapeEntity(position)
+Ball::Ball(float speed, sf::Vector2<float> position, float angle) : SpriteEntity(position)
 {
     Velocity = speed;
-    _Shape = new sf::CircleShape{ Radius, 20 };
-    _Shape->setPosition(Position);
+
+    _Sprite = new sf::Sprite;
+
+    _Texture = new sf::Texture;
+    _Texture->loadFromFile("ball.png");
+    _Texture->setSmooth(true);
+
+    _Sprite->setTexture(*_Texture);
+
+    _Sprite->setPosition(Position);
     Direction = normalizeVector(sf::Vector2<float> { cos(angle), sin(angle) });
 
     Direction * 2.0f;
@@ -25,5 +33,5 @@ void Ball::Bounce( sf::Vector2<float> n) {
 void Ball::Move() {
     //update ball position
     Position += Direction * Velocity * deltaTime;
-    _Shape->setPosition(Position);
+    _Sprite->setPosition(Position);
 }

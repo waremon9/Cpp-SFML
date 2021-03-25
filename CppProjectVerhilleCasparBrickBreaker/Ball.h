@@ -2,11 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "Global.h"
 #include "Function.h"
-#include "ShapeEntity.h"
+#include "SpriteEntity.h"
 
 class Brick;
 
-class Ball : public ShapeEntity
+class Ball : public SpriteEntity
 {
 private:
 	

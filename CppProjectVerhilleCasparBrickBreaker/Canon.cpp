@@ -10,7 +10,7 @@ Canon::Canon()
 	Cooldown = BaseCooldown;
 	BallSpeed = 800;
 
-	_Sprite = new sf::Sprite();
+	_Sprite = new sf::Sprite;
 
 	_Texture = new sf::Texture;
 	_Texture->loadFromFile("canon.png");
