@@ -19,10 +19,12 @@ RegenBrick::RegenBrick(sf::Vector2f pos, int life, sf::Font* font) : LifeBrick(p
 
 void RegenBrick::update(float dt)
 {
-	RegenCooldown -= dt;
-	if (RegenCooldown <= 0) {
-		resetCooldown();
-		RegenLife();
+	if (Life != MaxLife) {
+		RegenCooldown -= dt;
+		if (RegenCooldown <= 0) {
+			resetCooldown();
+			RegenLife();
+		}
 	}
 }
 
