@@ -48,8 +48,14 @@
     <ClCompile Include="Function.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeEntity.cpp" />
-    <ClCompile Include="SpriteEntity.cpp" />
+    <ClCompile Include="ShapeEntity.cpp">
+      <Filter>cpp\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteEntity.cpp">
+      <Filter>cpp\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosiveBrick.cpp" />
+    <ClCompile Include="Explosion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -79,7 +85,13 @@
     <ClInclude Include="RegenBrick.h">
       <Filter>header\Class\Bricks</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeEntity.h" />
-    <ClInclude Include="SpriteEntity.h" />
+    <ClInclude Include="ShapeEntity.h">
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteEntity.h">
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosiveBrick.h" />
+    <ClInclude Include="Explosion.h" />
   </ItemGroup>
 </Project>

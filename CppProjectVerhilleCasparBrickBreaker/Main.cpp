@@ -6,6 +6,7 @@
 #include "Brick.h"
 #include "LifeBrick.h"
 #include "RegenBrick.h"
+#include "ExplosiveBrick.h"
 #include "Canon.h"
 #include "GameBorder.h"
 
@@ -19,6 +20,7 @@ std::vector<GameBorder*> AllBorders;
 
 int main()
 {
+    srand((unsigned)time(NULL));
 
     sf::Clock deltaClock;
 
@@ -34,7 +36,7 @@ int main()
     //bricks
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 5; j++) {
-            switch (RandomInt(0,2) % 3)
+            switch (RandomInt(0,3) % 4)
             {
             case 0:
                 AllBricks.push_back(new Brick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
@@ -44,6 +46,9 @@ int main()
                 break;
             case 2:
                 AllBricks.push_back(new RegenBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(2, 3), MLFont));
+                break;
+            case 3:
+                AllBricks.push_back(new ExplosiveBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
                 break;
             default:
                 break;
