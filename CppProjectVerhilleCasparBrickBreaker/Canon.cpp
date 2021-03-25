@@ -10,7 +10,6 @@ Canon::Canon()
 	Cooldown = BaseCooldown;
 	BallSpeed = 800;
 
-	//_Shape = new sf::RectangleShape{ sf::Vector2f(30,100) };
 	_Sprite = new sf::Sprite();
 
 	_Texture = new sf::Texture;
@@ -25,7 +24,7 @@ Canon::Canon()
 	
 	sf::FloatRect Bound = _Sprite->getGlobalBounds();
 
-	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 5);
+	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 4.5);
 	_Sprite->setOrigin(Origin);
 
 	_Sprite->setScale(2,2);
