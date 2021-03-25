@@ -13,6 +13,16 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2<float> pos) : Brick(pos)
 
 	_Shape->setFillColor(FillColor);
 	_Shape->setOutlineColor(OutlineColor);
+
+	sf::Texture* bomb = new sf::Texture;
+	bomb->loadFromFile("BombIcon.png");
+	bomb->setSmooth(true);
+	BombIcon = new sf::Sprite();
+	BombIcon->setTexture(*bomb);
+	sf::FloatRect bombBound = BombIcon->getGlobalBounds();
+	BombIcon->setOrigin(sf::Vector2f(bombBound.width / 2, bombBound.height / 2));
+	BombIcon->setPosition(Position + ((sf::RectangleShape*)_Shape)->getSize() / 2.f);
+	BombIcon->setScale(0.2, 0.2);
 }
 
 void ExplosiveBrick::explode()
@@ -38,4 +48,9 @@ void ExplosiveBrick::damage()
 		AlreadyExplode = true;
 		explode();
 	}
+}
+
+void ExplosiveBrick::draw() const {
+	Brick::draw();
+	window.draw(*BombIcon);
 }
