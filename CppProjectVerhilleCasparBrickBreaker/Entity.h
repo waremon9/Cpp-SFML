@@ -20,6 +20,7 @@ public:
 
 	void setPosition(sf::Vector2f pos) { Position = pos; }
 
+	virtual void update(float) {};
 	virtual void draw() const { window.draw(*_Shape); }
 };
 

@@ -12,7 +12,20 @@ RegenBrick::RegenBrick(sf::Vector2f pos, int life, sf::Font* font) : LifeBrick(p
 
 	TextNumber->setFont(*font);
 	UpdateTextNumber();
+
+	BaseRegenCooldown = 3;
+	RegenCooldown = BaseRegenCooldown;
 }
+
+void RegenBrick::update(float dt)
+{
+	RegenCooldown -= dt;
+	if (RegenCooldown <= 0) {
+		resetCooldown();
+		RegenLife();
+	}
+}
+
 
 void RegenBrick::RegenLife()
 {

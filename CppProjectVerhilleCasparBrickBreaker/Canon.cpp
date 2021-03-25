@@ -3,6 +3,13 @@
 
 Canon::Canon()
 {
+	Angle = 0;
+
+
+	BaseCooldown = 0.3f;
+	Cooldown = BaseCooldown;
+	BallSpeed = 800;
+
 	_Shape = new sf::RectangleShape{ sf::Vector2f(30,100) };
 
 	Position = sf::Vector2f(window.getSize().x / 2, window.getSize().y);
@@ -25,13 +32,18 @@ void Canon::setRotation(float angle)
 
 void Canon::shoot()
 {
-	if (clock->getElapsedTime().asSeconds() > Cooldown && AllBalls.size()<3) {
-		Ball* ball = new Ball(400, sf::Vector2f(0,0), Angle);
+	if (Cooldown<=0 && AllBalls.size()<3) {
+		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
 		ball->setPosition(Position + Direction * (((sf::RectangleShape*)_Shape)->getSize().y - ball->getRadius()));
 		AllBalls.push_back(ball);
 
-		clock->restart();
+		ResetCooldown();
 	}
 
+}
+
+void Canon::update(float dt)
+{
+	Cooldown -= dt;
 }

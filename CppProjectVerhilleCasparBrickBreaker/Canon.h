@@ -5,11 +5,14 @@
 class Canon : public Entity
 {
 private:
-	float Angle = 0;
+	float Angle;
 	sf::Vector2f Direction;
 	sf::Vector2f Origin;
-	float Cooldown = 0.5;
-	sf::Clock* clock = new sf::Clock;
+	float BaseCooldown;
+	float Cooldown;
+	float BallSpeed;
+
+	void ResetCooldown() { Cooldown = BaseCooldown; }
 
 public:
 	Canon();
@@ -17,5 +20,7 @@ public:
 	void setRotation(float angle);
 
 	void shoot();
+
+	void update(float) override;
 };
 

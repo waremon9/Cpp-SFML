@@ -9,8 +9,6 @@
 #include "Canon.h"
 #include "GameBorder.h"
 
-void createBall();
-
 //global
 sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
 float deltaTime;
@@ -83,6 +81,12 @@ int main()
             }
         }
 
+        for (Brick* b : AllBricks) {
+            b->update(deltaTime);
+        }
+
+        canon->update(deltaTime);
+
         for (Ball* b : AllBalls) 
         {
             b->Move();
@@ -114,11 +118,4 @@ int main()
     }
 
     return 0;
-}
-
-void createBall() {
-    float speed = RandomInt(400,800);
-    sf::Vector2<float> pos{ (float)RandomInt(0,window.getSize().x - 40), (float)RandomInt(0,window.getSize().y - 40) };
-    float angle = RandomInt(0, 359);
-    AllBalls.push_back(new Ball(speed, pos, angle));
 }
