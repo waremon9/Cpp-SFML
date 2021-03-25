@@ -24,10 +24,10 @@ Canon::Canon()
 	
 	sf::FloatRect Bound = _Sprite->getGlobalBounds();
 
-	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 4.5);
+	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 4.65);
 	_Sprite->setOrigin(Origin);
 
-	_Sprite->setScale(2,2);
+	_Sprite->setScale(0.22,0.22);
 }
 
 void Canon::setRotation(float angle)
