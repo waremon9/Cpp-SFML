@@ -5,6 +5,8 @@
 #include "LifeBrick.h"
 #include "Ball.h"
 #include "GameBorder.h"
+#include "Particle.h"
+#include "ParticleEmitter.h"
 
 class Ball;
 
@@ -21,3 +23,5 @@ bool ballIntersects(const Entity*, const Entity*);
 void CheckCollisions(std::vector<Brick*>, std::vector<Ball*>, std::vector<GameBorder*>);
 void removeOuOfBoundBall();
 void removeDeadBlock();
+void removeParticle();
+void removeParticleEmitter();

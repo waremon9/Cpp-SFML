@@ -9,6 +9,8 @@
 #include "ExplosiveBrick.h"
 #include "Canon.h"
 #include "GameBorder.h"
+#include "Particle.h"
+#include "ParticleEmitter.h"
 
 //global
 sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
@@ -17,6 +19,8 @@ float deltaTime;
 std::vector<Ball*> AllBalls;
 std::vector<Brick*> AllBricks;
 std::vector<GameBorder*> AllBorders;
+std::vector<Particle*> AllParticles;
+std::vector<ParticleEmitter*> AllParticleEmitters;
 
 int main()
 {
@@ -59,6 +63,9 @@ int main()
     //Canon
     Canon* canon = new Canon();
 
+    //Particle test
+    AllParticleEmitters.push_back(new ParticleEmitter(sf::Vector2f(500,400)));
+
     //game loop
     while (window.isOpen())
     {
@@ -86,6 +93,14 @@ int main()
             }
         }
 
+        for (Particle* p : AllParticles) {
+            p->update(deltaTime);
+        }
+
+        for (ParticleEmitter* pe : AllParticleEmitters) {
+            pe->update(deltaTime);
+        }
+
         for (Brick* b : AllBricks) {
             b->update(deltaTime);
         }
@@ -99,6 +114,8 @@ int main()
 
         removeOuOfBoundBall();
         removeDeadBlock();
+        removeParticle();
+        removeParticleEmitter();
 
         CheckCollisions(AllBricks, AllBalls, AllBorders);
 
@@ -115,9 +132,10 @@ int main()
 
         canon->draw();
 
-        for (GameBorder* b : AllBorders) {
-            b->draw();
+        for (Particle* p : AllParticles) {
+            p->draw();
         }
+
         // Update the window
         window.display();
     }

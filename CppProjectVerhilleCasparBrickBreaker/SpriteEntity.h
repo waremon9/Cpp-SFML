@@ -4,7 +4,7 @@ class SpriteEntity : public Entity
 {
 protected:
 	sf::Sprite* _Sprite = nullptr;
-	sf::Texture* _Texture;
+	sf::Texture* _Texture = nullptr;
 
 public:
 	SpriteEntity() {};

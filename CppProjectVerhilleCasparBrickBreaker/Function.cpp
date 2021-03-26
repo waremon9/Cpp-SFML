@@ -224,3 +224,37 @@ void removeDeadBlock() {
         AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
     }
 }
+
+void removeParticle() {
+    std::vector<int> particleToDelete;
+    int index = 0;
+
+    for (Particle* p : AllParticles) {
+        if (p->getLifeTime() <= 0) {
+            particleToDelete.push_back(index);
+        }
+        index++;
+    }
+
+    for (int i = particleToDelete.size() - 1; i >= 0; i--) {
+        delete AllParticles[particleToDelete[i]];
+        AllParticles.erase(AllParticles.begin() + particleToDelete[i]);
+    }
+}
+
+void removeParticleEmitter() {
+    std::vector<int> particleEmitterToDelete;
+    int index = 0;
+
+    for (ParticleEmitter* pe : AllParticleEmitters) {
+        if (pe->getEmitterLifeTime() <= 0) {
+            particleEmitterToDelete.push_back(index);
+        }
+        index++;
+    }
+
+    for (int i = particleEmitterToDelete.size() - 1; i >= 0; i--) {
+        delete AllParticleEmitters[particleEmitterToDelete[i]];
+        AllParticleEmitters.erase(AllParticleEmitters.begin() + particleEmitterToDelete[i]);
+    }
+}
