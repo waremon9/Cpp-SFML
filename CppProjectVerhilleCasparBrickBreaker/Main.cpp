@@ -10,6 +10,8 @@
 #include "Canon.h"
 #include "GameBorder.h"
 #include "Particle.h"
+#include "ParticleSimple.h"
+#include "ParticleComplex.h"
 #include "ParticleEmitter.h"
 
 //global
@@ -64,7 +66,10 @@ int main()
     Canon* canon = new Canon();
 
     //Particle test
-    AllParticleEmitters.push_back(new ParticleEmitter(sf::Vector2f(500,400)));
+    AllParticleEmitters.push_back(new ParticleEmitter(sf::Vector2f(500,400),
+        new ParticleSimple(sf::Vector2f(500,400), new sf::CircleShape(2,10) ),
+        15, 0.02, 20
+        ));
 
     //game loop
     while (window.isOpen())

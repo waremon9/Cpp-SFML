@@ -160,7 +160,9 @@
     <ClCompile Include="LifeBrick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleComplex.cpp" />
     <ClCompile Include="ParticleEmitter.cpp" />
+    <ClCompile Include="ParticleSimple.cpp" />
     <ClCompile Include="RegenBrick.cpp" />
     <ClCompile Include="ShapeEntity.cpp" />
     <ClCompile Include="SpriteEntity.cpp" />
@@ -177,7 +179,9 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="LifeBrick.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleComplex.h" />
     <ClInclude Include="ParticleEmitter.h" />
+    <ClInclude Include="ParticleSimple.h" />
     <ClInclude Include="RegenBrick.h" />
     <ClInclude Include="ShapeEntity.h" />
     <ClInclude Include="SpriteEntity.h" />

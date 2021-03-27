@@ -1,10 +1,14 @@
 #pragma once
 #include "Entity.h"
 #include "Particle.h"
+#include "ParticleSimple.h"
+#include "ParticleComplex.h"
 
 class ParticleEmitter : public Entity
 {
 private:
+	Particle* BaseParticle = nullptr;
+
 	float BaseCooldown; //time between burst
 	float Cooldown;
 	int QteParticle; //particle each burst
@@ -14,7 +18,7 @@ private:
 	void spawnParticle();
 
 public:
-	ParticleEmitter(sf::Vector2f);//position, particle to spawn
+	ParticleEmitter(sf::Vector2f position, Particle* particle, float lifetime, float cooldown, int qteParticle);
 
 	float getEmitterLifeTime() { return EmitterLifeTime; }
 

@@ -1,12 +1,10 @@
 #pragma once
 #include "Entity.h"
+#include <iostream>
 
 class Particle : public Entity
 {
 protected:
-	//for test
-	sf::CircleShape* parti;
-
 	float LifeTime;
 	float Velocity;
 	sf::Vector2f Direction;
@@ -25,10 +23,9 @@ public:
 	float getVelocity() const { return Velocity; }
 	float getLifeTime() const { return LifeTime; }
 
-	void update(float) override;
-	void draw() const override;
+	virtual void update(float) override;
 
-	Particle* clone(Particle*); //return a clone of the original
+	virtual Particle* clone() = 0; //return a clone of the original
 
 	sf::FloatRect getGlobalBounds() const override { return sf::FloatRect(); }//gnéeh
 };
