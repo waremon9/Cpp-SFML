@@ -3,17 +3,19 @@
 
 #include "Function.h"
 
-ParticleSimple::ParticleSimple(sf::Vector2f pos, sf::CircleShape* shape) : Particle(pos)
+ParticleSimple::ParticleSimple(sf::CircleShape* shape)
 {
 	_Particle = shape;
+	_Particle->setPosition(Position);
 }
 
-ParticleSimple::ParticleSimple(sf::Vector2f pos, float speed, float lifetime, sf::Vector2f dir, sf::CircleShape* shape) : Particle(pos)
+ParticleSimple::ParticleSimple(float speed, float lifetime, sf::Vector2f dir, sf::CircleShape* shape)
 {
 	Velocity = speed;
 	LifeTime = lifetime;
 	Direction = dir;
 	_Particle = shape;
+	_Particle->setPosition(Position);
 }
 
 void ParticleSimple::update(float dt)
@@ -30,5 +32,5 @@ void ParticleSimple::draw() const
 
 ParticleSimple* ParticleSimple::clone()
 {
-	return new ParticleSimple(Position, Velocity, LifeTime, Direction, new sf::CircleShape(*_Particle));
+	return new ParticleSimple(Velocity, LifeTime, Direction, new sf::CircleShape(*_Particle));
 }

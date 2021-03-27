@@ -66,10 +66,36 @@ int main()
     Canon* canon = new Canon();
 
     //Particle test
+    AllParticleEmitters.push_back(//add the emitter to the list
+        new ParticleEmitter(//create emitter
+            sf::Vector2f(500,400),//Position pf emitter, particle position when spawn
+            new ParticleSimple(//Particle to spawn
+                new sf::CircleShape(2,10)//Shape of particle , or sprite if ParticleComplex
+            ),
+            15,//emitter LifeTime
+            0.002,//Cooldown between burst
+            5,//Particle each spawn
+            sf::Vector2f(0.2,1),//Particle LifeTime, random between 2 value
+            sf::Vector2f(50,250),//Particle Speed, random between 2 value
+            sf::Vector2f(0,360)//Particle starting direction, degree, random between 2 value
+        )
+    );
+
+    /*
+    sf::Sprite* s = new sf::Sprite;
+
+    sf::Texture* t = new sf::Texture;
+    t->loadFromFile("ball.png");
+    t->setSmooth(true);
+
+    s->setTexture(*t);
+
     AllParticleEmitters.push_back(new ParticleEmitter(sf::Vector2f(500,400),
-        new ParticleSimple(sf::Vector2f(500,400), new sf::CircleShape(2,10) ),
-        15, 0.02, 20
+        new ParticleComplex(sf::Vector2f(500,400), s ),
+        15, 0.02, 20,
+        sf::Vector2f(0,270)
         ));
+    */
 
     //game loop
     while (window.isOpen())

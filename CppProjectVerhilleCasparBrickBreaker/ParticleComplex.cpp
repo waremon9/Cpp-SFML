@@ -1,13 +1,15 @@
 #include "ParticleComplex.h"
 
-ParticleComplex::ParticleComplex(sf::Vector2f pos, sf::Sprite* sprite) : Particle(pos)
+ParticleComplex::ParticleComplex(sf::Sprite* sprite)
 {
 	_Particle = sprite;
+	_Particle->setPosition(Position);
 }
 
-ParticleComplex::ParticleComplex(sf::Vector2f pos, float speed, float lifetime, sf::Vector2f dir, sf::Sprite* sprite) : Particle(pos)
+ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, sf::Sprite* sprite)
 {
 	_Particle = sprite;
+	_Particle->setPosition(Position);
 }
 
 void ParticleComplex::update(float dt)
@@ -23,5 +25,5 @@ void ParticleComplex::draw() const
 
 ParticleComplex* ParticleComplex::clone()
 {
-	return new ParticleComplex(Position, Velocity, LifeTime, Direction, new sf::Sprite(*_Particle));
+	return new ParticleComplex(Velocity, LifeTime, Direction, new sf::Sprite(*_Particle));
 }

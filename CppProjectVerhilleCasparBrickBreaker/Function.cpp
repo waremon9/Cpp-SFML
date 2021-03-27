@@ -10,6 +10,11 @@ int RandomInt(int min, int max) {
     return rand() % (max - min + 1) + min;
 }
 
+//return random float between min and max (ty stacko)
+float RandomFloat(float min, float max) {
+    return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+}
+
 //convert degree to radian
 float convertToRadian(float degree) {
     return (degree * (M_PI / 180));
@@ -220,6 +225,27 @@ void removeDeadBlock() {
     }
 
     for (int i = blockToDelete.size() - 1; i >= 0; i--) {
+
+
+        //WARNING!!! Un peu barbare mais c'est pour tester si ca fonctionne
+
+        AllParticleEmitters.push_back(
+            new ParticleEmitter(
+                AllBricks[blockToDelete[i]]->getPosition() + ((sf::RectangleShape*)AllBricks[blockToDelete[i]]->getShape())->getSize() / 2.f,
+                new ParticleSimple(
+                    new sf::CircleShape(2.7, 10)
+                ),
+                0.1,
+                0.004,
+                3,
+                sf::Vector2f(0.12, 0.4),
+                sf::Vector2f(100, 250),
+                sf::Vector2f(0, 360)
+            )
+        );
+
+        //Fin du warning. A la prochaine.
+
         delete AllBricks[blockToDelete[i]];
         AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
     }

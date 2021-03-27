@@ -11,6 +11,7 @@
 class Ball;
 
 int RandomInt(int, int);
+float RandomFloat(float, float);
 float convertToRadian(float);
 sf::Vector2<float> normalizeVector(sf::Vector2<float>);
 sf::Vector2<float> getNormalVector(sf::Vector2<float>, sf::Vector2<float>);

@@ -13,12 +13,15 @@ private:
 	float Cooldown;
 	int QteParticle; //particle each burst
 	float EmitterLifeTime;
+	sf::Vector2f ParticleLifeTime;
+	sf::Vector2f ParticleSpeed;
+	sf::Vector2f SpawningAngle;
 
 	void resetCooldown();
 	void spawnParticle();
 
 public:
-	ParticleEmitter(sf::Vector2f position, Particle* particle, float lifetime, float cooldown, int qteParticle);
+	ParticleEmitter(sf::Vector2f position, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particlespeed, sf::Vector2f spawningAngle);
 
 	float getEmitterLifeTime() { return EmitterLifeTime; }
 

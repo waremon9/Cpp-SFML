@@ -7,8 +7,8 @@ private:
 	sf::CircleShape* _Particle = nullptr;
 
 public:
-	ParticleSimple(sf::Vector2f, sf::CircleShape*); // position, shape
-	ParticleSimple(sf::Vector2f, float, float, sf::Vector2f, sf::CircleShape*); // position,  speed, lifetime, direction, shape
+	ParticleSimple(sf::CircleShape*); // shape
+	ParticleSimple(float, float, sf::Vector2f, sf::CircleShape*); // speed, lifetime, direction, shape
 
 	sf::Shape* getParticleShape() { return _Particle; }
 	void setParticleShape(sf::CircleShape* s) { _Particle = s; }

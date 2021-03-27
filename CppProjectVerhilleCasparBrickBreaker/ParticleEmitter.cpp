@@ -6,12 +6,15 @@
 #include "ParticleSimple.h"
 #include "ParticleComplex.h"
 
-ParticleEmitter::ParticleEmitter(sf::Vector2f pos, Particle* particle, float lifetime, float cooldown, int qteParticle) : Entity(pos)
+ParticleEmitter::ParticleEmitter(sf::Vector2f pos, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particleSpeed, sf::Vector2f spawningAngle) : Entity(pos)
 {
 	BaseParticle = particle;
 	BaseCooldown = Cooldown = cooldown;
 	QteParticle = qteParticle;
 	EmitterLifeTime = lifetime;
+	ParticleLifeTime = particleLifeTime;
+	ParticleSpeed = particleSpeed;
+	SpawningAngle = spawningAngle;
 }
 
 void ParticleEmitter::update(float dt)
@@ -31,11 +34,12 @@ void ParticleEmitter::spawnParticle() {
 	Particle* partTmp = BaseParticle->clone();
 
 	partTmp->setPosition(Position);
-	partTmp->setLifeTime(2);
-	partTmp->setVelocity(300);
-	partTmp->setDirection(normalizeVector(sf::Vector2f(RandomInt(-10000, 10000), RandomInt(-10000, 10000))));
-
-	Particle* part = new ParticleSimple(Position, 300, 2, normalizeVector(sf::Vector2f(RandomInt(-10000, 10000), RandomInt(-10000, 10000))), new sf::CircleShape(3,10));
+	float RandomLifeTime = RandomFloat(ParticleLifeTime.x, ParticleLifeTime.y);
+	partTmp->setLifeTime(RandomLifeTime);
+	float RandomSpeed = RandomFloat(ParticleSpeed.x, ParticleSpeed.y);
+	partTmp->setVelocity(RandomSpeed);
+	float RandomAngle = RandomFloat(SpawningAngle.x, SpawningAngle.y);
+	partTmp->setDirection(sf::Vector2f(std::cos(convertToRadian(RandomAngle)), -std::sin(convertToRadian(RandomAngle))));
 
 	AllParticles.push_back(partTmp);
 }

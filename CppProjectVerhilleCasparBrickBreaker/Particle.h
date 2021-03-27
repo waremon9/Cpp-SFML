@@ -12,8 +12,8 @@ protected:
 	void move(float);
 
 public:
-	Particle(sf::Vector2f); //position
-	Particle(sf::Vector2f, float, float, sf::Vector2f); //position, speed, lifetime, direction
+	Particle();
+	Particle(float, float, sf::Vector2f); // speed, lifetime, direction
 
 	void setDirection(sf::Vector2f dir) { Direction = dir; }
 	void setVelocity(float vel) { Velocity = vel; }

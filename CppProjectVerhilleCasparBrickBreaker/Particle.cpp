@@ -1,13 +1,13 @@
 #include "Particle.h"
 
-Particle::Particle(sf::Vector2f pos) : Entity(pos)
+Particle::Particle()
 {
 	Velocity = 0;
 	LifeTime = 0;
 	Direction = sf::Vector2f(0,0);
 }
 
-Particle::Particle(sf::Vector2f pos, float velo, float life, sf::Vector2f dir) : Entity(pos)
+Particle::Particle(float velo, float life, sf::Vector2f dir)
 {
 	Velocity = velo;
 	LifeTime = life;
