@@ -5,12 +5,16 @@ ParticleComplex::ParticleComplex(sf::Sprite* sprite, float gra, bool b)
 	_Particle = sprite;
 	IsFrontParticle = b;
 	GravityStrenght = gra;
+
+	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width / 2.f, _Particle->getGlobalBounds().height / 2.f));
 }
 
 ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, float gra, sf::Color col, sf::Sprite* sprite, bool front) : Particle(speed, lifetime, dir, gra, col, front)
 {
 	_Particle = sprite;
 	_Particle->setColor(_Color);
+
+	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width / 2.f, _Particle->getGlobalBounds().height / 2.f));
 }
 
 void ParticleComplex::update(float dt)

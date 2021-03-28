@@ -34,6 +34,6 @@ public:
 
 	virtual Particle* clone() = 0; //return a clone of the original
 
-	sf::FloatRect getGlobalBounds() const override { return sf::FloatRect(); }//gnéeh
+	virtual sf::FloatRect getGlobalBounds() const override = 0;
 };
 

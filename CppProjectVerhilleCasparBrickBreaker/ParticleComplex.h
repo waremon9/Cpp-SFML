@@ -18,5 +18,7 @@ public:
 	void update(float) override;
 	void draw() const override;
 	ParticleComplex* clone() override;
+
+	sf::FloatRect getGlobalBounds() const override { return _Particle->getGlobalBounds(); }
 };
 

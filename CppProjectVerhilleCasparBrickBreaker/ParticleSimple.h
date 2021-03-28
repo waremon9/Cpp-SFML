@@ -20,6 +20,6 @@ public:
 	void draw() const override;
 	ParticleSimple* clone() override;
 
-	sf::FloatRect getGlobalBounds() const override { return sf::FloatRect(); }//gnéeh
+	sf::FloatRect getGlobalBounds() const override { return _Particle->getGlobalBounds(); }
 };
 
