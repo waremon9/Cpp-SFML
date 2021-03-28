@@ -5,7 +5,6 @@ Canon::Canon()
 {
 	Angle = 0;
 
-
 	BaseCooldown = 0.3f;
 	Cooldown = BaseCooldown;
 	BallSpeed = 800;
@@ -28,6 +27,11 @@ Canon::Canon()
 	_Sprite->setOrigin(Origin);
 
 	_Sprite->setScale(0.22,0.22);
+
+	Buffer = new sf::SoundBuffer;
+	Buffer->loadFromFile("Piou.wav");
+	ShootSound = new sf::Sound();
+	ShootSound->setBuffer(*Buffer);
 }
 
 void Canon::setRotation(float angle)
@@ -46,8 +50,40 @@ void Canon::shoot()
 	if (Cooldown<=0 && AllBalls.size()<3) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
-		ball->setPosition(Position + Direction * _Sprite->getOrigin().y * _Sprite->getScale().y);
+		sf::Vector2f canonFront = Position + Direction * _Sprite->getOrigin().y * _Sprite->getScale().y;
+		ball->setPosition(canonFront);
 		AllBalls.push_back(ball);
+
+		sf::Sprite* spr = new sf::Sprite;
+
+		sf::Texture* tex = new sf::Texture;
+		tex->loadFromFile("explosionParticle.png");
+		tex->setSmooth(true);
+
+		spr->setTexture(*tex);
+		spr->setScale(0.08, 0.08);
+
+		float calculatedAngle = Angle * 180 / 3.1415 + 90;
+
+		AllParticleEmitters.push_back(
+			new ParticleEmitter(
+				canonFront - sf::Vector2f(45,40),
+				new ParticleComplex(
+					spr,
+					5,
+					true 
+				),
+				0.001,
+				0.001,
+				30,
+				sf::Vector2f(0.2, 0.5),
+				sf::Vector2f(150, 300),
+				sf::Vector2f(calculatedAngle - 30,calculatedAngle - 150),
+				sf::Color(255, 255, 255, 20)
+			)
+		);
+
+		ShootSound->play();
 
 		ResetCooldown();
 	}

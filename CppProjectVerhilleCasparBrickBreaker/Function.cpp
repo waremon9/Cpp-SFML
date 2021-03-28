@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "Function.h"
 #include <random>
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 #include <iostream>
@@ -122,6 +123,9 @@ void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls,
                         }
 
                         hitSomething = true;
+
+
+
                     }
 
                     ball->addInCollisionVector(brick);

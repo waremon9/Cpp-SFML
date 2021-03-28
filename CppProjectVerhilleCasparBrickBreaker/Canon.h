@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #pragma once
+#include <SFML/Audio.hpp>
 #include "SpriteEntity.h"
 
 class Canon : public SpriteEntity
@@ -11,6 +12,9 @@ private:
 	float BaseCooldown;
 	float Cooldown;
 	float BallSpeed;
+
+	sf::SoundBuffer* Buffer = nullptr;
+	sf::Sound* ShootSound = nullptr;
 
 	void ResetCooldown() { Cooldown = BaseCooldown; }
 
