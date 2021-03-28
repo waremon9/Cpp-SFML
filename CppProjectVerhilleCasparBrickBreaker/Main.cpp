@@ -77,7 +77,8 @@ int main()
             5,//Particle each spawn
             sf::Vector2f(0.2,1),//Particle LifeTime, random between 2 value
             sf::Vector2f(50,250),//Particle Speed, random between 2 value
-            sf::Vector2f(0,360)//Particle starting direction, degree, random between 2 value
+            sf::Vector2f(0,360),//Particle starting direction, degree, random between 2 value
+            sf::Color::Green
         )
     );
 

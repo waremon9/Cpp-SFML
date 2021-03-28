@@ -240,7 +240,8 @@ void removeDeadBlock() {
                 3,
                 sf::Vector2f(0.12, 0.4),
                 sf::Vector2f(100, 250),
-                sf::Vector2f(0, 360)
+                sf::Vector2f(0, 360),
+                sf::Color::Red
             )
         );
 

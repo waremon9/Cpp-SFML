@@ -17,7 +17,7 @@ public:
 	sf::Vector2f getPosition() const { return Position; }
 	virtual sf::FloatRect getGlobalBounds() const = 0;
 
-	void setPosition(sf::Vector2f pos) { Position = pos; }
+	virtual void setPosition(sf::Vector2f pos) { Position = pos; }
 
 	virtual void update(float) { };
 	virtual void draw() const { }

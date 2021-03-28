@@ -7,11 +7,12 @@ Particle::Particle()
 	Direction = sf::Vector2f(0,0);
 }
 
-Particle::Particle(float velo, float life, sf::Vector2f dir)
+Particle::Particle(float velo, float life, sf::Vector2f dir, sf::Color col)
 {
 	Velocity = velo;
 	LifeTime = life;
 	Direction = dir;
+	_Color = col;
 }
 
 void Particle::update(float dt)

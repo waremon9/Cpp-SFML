@@ -8,16 +8,18 @@ protected:
 	float LifeTime;
 	float Velocity;
 	sf::Vector2f Direction;
+	sf::Color _Color;
 
 	void move(float);
 
 public:
 	Particle();
-	Particle(float, float, sf::Vector2f); // speed, lifetime, direction
+	Particle(float, float, sf::Vector2f, sf::Color); // speed, lifetime, direction
 
 	void setDirection(sf::Vector2f dir) { Direction = dir; }
 	void setVelocity(float vel) { Velocity = vel; }
 	void setLifeTime(float lt) { LifeTime = lt; }
+	virtual void setColor(sf::Color c) = 0;
 
 	sf::Vector2f getDirection() const { return Direction; }
 	float getVelocity() const { return Velocity; }

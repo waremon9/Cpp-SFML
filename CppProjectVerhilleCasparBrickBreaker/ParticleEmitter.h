@@ -16,12 +16,13 @@ private:
 	sf::Vector2f ParticleLifeTime;
 	sf::Vector2f ParticleSpeed;
 	sf::Vector2f SpawningAngle;
+	sf::Color ParticleColor;
 
 	void resetCooldown();
 	void spawnParticle();
 
 public:
-	ParticleEmitter(sf::Vector2f position, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particlespeed, sf::Vector2f spawningAngle);
+	ParticleEmitter(sf::Vector2f position, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particlespeed, sf::Vector2f spawningAngle, sf::Color particleColor);
 
 	float getEmitterLifeTime() { return EmitterLifeTime; }
 

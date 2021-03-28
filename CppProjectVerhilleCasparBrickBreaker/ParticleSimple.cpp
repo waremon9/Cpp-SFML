@@ -6,16 +6,12 @@
 ParticleSimple::ParticleSimple(sf::CircleShape* shape)
 {
 	_Particle = shape;
-	_Particle->setPosition(Position);
 }
 
-ParticleSimple::ParticleSimple(float speed, float lifetime, sf::Vector2f dir, sf::CircleShape* shape)
+ParticleSimple::ParticleSimple(float speed, float lifetime, sf::Vector2f dir, sf::Color col, sf::CircleShape* shape) : Particle(speed, lifetime, dir, col)
 {
-	Velocity = speed;
-	LifeTime = lifetime;
-	Direction = dir;
 	_Particle = shape;
-	_Particle->setPosition(Position);
+	_Particle->setFillColor(_Color);
 }
 
 void ParticleSimple::update(float dt)
@@ -32,5 +28,5 @@ void ParticleSimple::draw() const
 
 ParticleSimple* ParticleSimple::clone()
 {
-	return new ParticleSimple(Velocity, LifeTime, Direction, new sf::CircleShape(*_Particle));
+	return new ParticleSimple(Velocity, LifeTime, Direction, _Color, new sf::CircleShape(*_Particle));
 }

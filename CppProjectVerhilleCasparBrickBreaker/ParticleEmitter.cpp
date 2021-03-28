@@ -6,7 +6,7 @@
 #include "ParticleSimple.h"
 #include "ParticleComplex.h"
 
-ParticleEmitter::ParticleEmitter(sf::Vector2f pos, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particleSpeed, sf::Vector2f spawningAngle) : Entity(pos)
+ParticleEmitter::ParticleEmitter(sf::Vector2f pos, Particle* particle, float lifetime, float cooldown, int qteParticle, sf::Vector2f particleLifeTime, sf::Vector2f particleSpeed, sf::Vector2f spawningAngle, sf::Color particleColor) : Entity(pos)
 {
 	BaseParticle = particle;
 	BaseCooldown = Cooldown = cooldown;
@@ -15,6 +15,7 @@ ParticleEmitter::ParticleEmitter(sf::Vector2f pos, Particle* particle, float lif
 	ParticleLifeTime = particleLifeTime;
 	ParticleSpeed = particleSpeed;
 	SpawningAngle = spawningAngle;
+	ParticleColor = particleColor;
 }
 
 void ParticleEmitter::update(float dt)
@@ -40,6 +41,7 @@ void ParticleEmitter::spawnParticle() {
 	partTmp->setVelocity(RandomSpeed);
 	float RandomAngle = RandomFloat(SpawningAngle.x, SpawningAngle.y);
 	partTmp->setDirection(sf::Vector2f(std::cos(convertToRadian(RandomAngle)), -std::sin(convertToRadian(RandomAngle))));
+	partTmp->setColor(ParticleColor);
 
 	AllParticles.push_back(partTmp);
 }

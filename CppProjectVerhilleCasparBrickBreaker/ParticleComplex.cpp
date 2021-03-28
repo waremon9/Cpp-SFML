@@ -3,13 +3,12 @@
 ParticleComplex::ParticleComplex(sf::Sprite* sprite)
 {
 	_Particle = sprite;
-	_Particle->setPosition(Position);
 }
 
-ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, sf::Sprite* sprite)
+ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, sf::Color col, sf::Sprite* sprite) : Particle(speed, lifetime, dir, col)
 {
 	_Particle = sprite;
-	_Particle->setPosition(Position);
+	_Particle->setColor(_Color);
 }
 
 void ParticleComplex::update(float dt)
@@ -25,5 +24,5 @@ void ParticleComplex::draw() const
 
 ParticleComplex* ParticleComplex::clone()
 {
-	return new ParticleComplex(Velocity, LifeTime, Direction, new sf::Sprite(*_Particle));
+	return new ParticleComplex(Velocity, LifeTime, Direction, _Color, new sf::Sprite(*_Particle));
 }
