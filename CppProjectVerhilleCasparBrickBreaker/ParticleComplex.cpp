@@ -6,7 +6,7 @@ ParticleComplex::ParticleComplex(sf::Sprite* sprite, float gra, bool b)
 	IsFrontParticle = b;
 	GravityStrenght = gra;
 
-	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width / 2.f, _Particle->getGlobalBounds().height / 2.f));
+	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width * _Particle->getScale().x / 2.f, _Particle->getGlobalBounds().height * _Particle->getScale().y / 2.f));
 }
 
 ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, float gra, sf::Color col, sf::Sprite* sprite, bool front) : Particle(speed, lifetime, dir, gra, col, front)
@@ -14,7 +14,7 @@ ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, 
 	_Particle = sprite;
 	_Particle->setColor(_Color);
 
-	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width / 2.f, _Particle->getGlobalBounds().height / 2.f));
+	_Particle->setOrigin(sf::Vector2f(_Particle->getGlobalBounds().width * _Particle->getScale().x / 2.f, _Particle->getGlobalBounds().height * _Particle->getScale().y / 2.f));
 }
 
 void ParticleComplex::update(float dt)

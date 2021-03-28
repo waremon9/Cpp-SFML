@@ -40,7 +40,7 @@ void ParticleEmitter::spawnParticle() {
 	float RandomSpeed = RandomFloat(ParticleSpeed.x, ParticleSpeed.y);
 	partTmp->setVelocity(RandomSpeed);
 	float RandomAngle = RandomFloat(SpawningAngle.x, SpawningAngle.y);
-	partTmp->setDirection(sf::Vector2f(std::cos(convertToRadian(RandomAngle)), -std::sin(convertToRadian(RandomAngle))));
+	partTmp->setDirection(sf::Vector2f(std::cos(convertToRadian(RandomAngle)), std::sin(convertToRadian(RandomAngle))));
 	partTmp->setColor(ParticleColor);
 
 	AllParticles.push_back(partTmp);
