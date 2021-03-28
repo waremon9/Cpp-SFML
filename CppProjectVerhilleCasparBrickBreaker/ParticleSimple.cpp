@@ -3,12 +3,14 @@
 
 #include "Function.h"
 
-ParticleSimple::ParticleSimple(sf::CircleShape* shape)
+ParticleSimple::ParticleSimple(sf::CircleShape* shape, float gra, bool b)
 {
 	_Particle = shape;
+	GravityStrenght = gra;
+	IsFrontParticle = b;
 }
 
-ParticleSimple::ParticleSimple(float speed, float lifetime, sf::Vector2f dir, sf::Color col, sf::CircleShape* shape) : Particle(speed, lifetime, dir, col)
+ParticleSimple::ParticleSimple(float speed, float lifetime, sf::Vector2f dir, float gra, sf::Color col, sf::CircleShape* shape, bool front) : Particle(speed, lifetime, dir, gra, col, front)
 {
 	_Particle = shape;
 	_Particle->setFillColor(_Color);
@@ -28,5 +30,5 @@ void ParticleSimple::draw() const
 
 ParticleSimple* ParticleSimple::clone()
 {
-	return new ParticleSimple(Velocity, LifeTime, Direction, _Color, new sf::CircleShape(*_Particle));
+	return new ParticleSimple(Velocity, LifeTime, Direction, GravityStrenght, _Color, new sf::CircleShape(*_Particle), IsFrontParticle);
 }

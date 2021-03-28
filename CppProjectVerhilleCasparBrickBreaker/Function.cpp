@@ -233,7 +233,9 @@ void removeDeadBlock() {
             new ParticleEmitter(
                 AllBricks[blockToDelete[i]]->getPosition() + ((sf::RectangleShape*)AllBricks[blockToDelete[i]]->getShape())->getSize() / 2.f,
                 new ParticleSimple(
-                    new sf::CircleShape(2.7, 10)
+                    new sf::CircleShape(2.2, 10),
+                    12,
+                    true
                 ),
                 0.1,
                 0.004,
@@ -241,7 +243,7 @@ void removeDeadBlock() {
                 sf::Vector2f(0.12, 0.4),
                 sf::Vector2f(100, 250),
                 sf::Vector2f(0, 360),
-                sf::Color::Red
+                AllBricks[blockToDelete[i]]->getShape()->getFillColor()
             )
         );
 

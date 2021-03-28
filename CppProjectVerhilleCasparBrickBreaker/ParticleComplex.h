@@ -6,8 +6,8 @@ private:
 	sf::Sprite* _Particle = nullptr;
 
 public:
-	ParticleComplex(sf::Sprite*); // shape
-	ParticleComplex(float, float, sf::Vector2f, sf::Color, sf::Sprite*); // speed, lifetime, direction, shape
+	ParticleComplex(sf::Sprite*, float, bool); // shape, gravity, front/back
+	ParticleComplex(float, float, sf::Vector2f, float, sf::Color, sf::Sprite*, bool); // speed, lifetime, direction, gravity, shape, front/back
 
 	sf::Sprite* getParticleSprite() { return _Particle; }
 

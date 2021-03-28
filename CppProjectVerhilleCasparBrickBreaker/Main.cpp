@@ -68,35 +68,22 @@ int main()
     //Particle test
     AllParticleEmitters.push_back(//add the emitter to the list
         new ParticleEmitter(//create emitter
-            sf::Vector2f(500,400),//Position pf emitter, particle position when spawn
+            (sf::Vector2f)window.getSize() / 2.f,//Position pf emitter, particle position when spawn
             new ParticleSimple(//Particle to spawn
-                new sf::CircleShape(2,10)//Shape of particle , or sprite if ParticleComplex
+                new sf::CircleShape(3,10),//Shape of particle , or sprite if ParticleComplex
+                0, // Gravity strenght
+                false //is the particle on front of all or behind
             ),
-            15,//emitter LifeTime
-            0.002,//Cooldown between burst
-            5,//Particle each spawn
-            sf::Vector2f(0.2,1),//Particle LifeTime, random between 2 value
-            sf::Vector2f(50,250),//Particle Speed, random between 2 value
+            INFINITY,//emitter LifeTime
+            0.05,//Cooldown between burst
+            1,//Particle each burst
+            sf::Vector2f(3,3),//Particle LifeTime, random between 2 value
+            sf::Vector2f(400,600),//Particle Speed, random between 2 value
             sf::Vector2f(0,360),//Particle starting direction, degree, random between 2 value
-            sf::Color::Green
+            sf::Color(180,180,180,200)//Color of the particle
         )
     );
-
-    /*
-    sf::Sprite* s = new sf::Sprite;
-
-    sf::Texture* t = new sf::Texture;
-    t->loadFromFile("ball.png");
-    t->setSmooth(true);
-
-    s->setTexture(*t);
-
-    AllParticleEmitters.push_back(new ParticleEmitter(sf::Vector2f(500,400),
-        new ParticleComplex(sf::Vector2f(500,400), s ),
-        15, 0.02, 20,
-        sf::Vector2f(0,270)
-        ));
-    */
+    
 
     //game loop
     while (window.isOpen())
@@ -155,6 +142,10 @@ int main()
         // Clear screen
         window.clear();
         //draw everything
+        for (Particle* p : AllParticles) {
+            if (!p->isFrontParticle()) p->draw();
+        }
+
         for (Ball* b : AllBalls) {
             b->draw();
         }
@@ -165,7 +156,7 @@ int main()
         canon->draw();
 
         for (Particle* p : AllParticles) {
-            p->draw();
+            if(p->isFrontParticle()) p->draw();
         }
 
         // Update the window

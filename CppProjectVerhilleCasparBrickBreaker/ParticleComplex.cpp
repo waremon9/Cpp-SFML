@@ -1,11 +1,13 @@
 #include "ParticleComplex.h"
 
-ParticleComplex::ParticleComplex(sf::Sprite* sprite)
+ParticleComplex::ParticleComplex(sf::Sprite* sprite, float gra, bool b)
 {
 	_Particle = sprite;
+	IsFrontParticle = b;
+	GravityStrenght = gra;
 }
 
-ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, sf::Color col, sf::Sprite* sprite) : Particle(speed, lifetime, dir, col)
+ParticleComplex::ParticleComplex(float speed, float lifetime, sf::Vector2f dir, float gra, sf::Color col, sf::Sprite* sprite, bool front) : Particle(speed, lifetime, dir, gra, col, front)
 {
 	_Particle = sprite;
 	_Particle->setColor(_Color);
@@ -24,5 +26,5 @@ void ParticleComplex::draw() const
 
 ParticleComplex* ParticleComplex::clone()
 {
-	return new ParticleComplex(Velocity, LifeTime, Direction, _Color, new sf::Sprite(*_Particle));
+	return new ParticleComplex(Velocity, LifeTime, Direction, GravityStrenght, _Color, new sf::Sprite(*_Particle), IsFrontParticle);
 }
