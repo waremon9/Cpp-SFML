@@ -26,6 +26,22 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2<float> pos) : Brick(pos)
 	BombIcon->setPosition(Position + ((sf::RectangleShape*)_Shape)->getSize() / 2.f);
 	BombIcon->setScale(0.2, 0.2);
 
+	//Particle sprite
+	sf::Sprite* spr = new sf::Sprite;
+
+	sf::Texture* tex = new sf::Texture;
+	tex->loadFromFile("explosionParticle.png");
+	tex->setSmooth(true);
+
+	spr->setTexture(*tex);
+	spr->setScale(0.08, 0.08);
+
+	ExplosionParticle = new ParticleComplex(
+		spr,
+		5,
+		true
+	);
+
 	//hit sound
 	Buffer = new sf::SoundBuffer;
 	Buffer->loadFromFile("Boom.wav");
@@ -37,6 +53,20 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2<float> pos) : Brick(pos)
 void ExplosiveBrick::explode()
 {
 	BoomSound->play();
+
+	AllParticleEmitters.push_back(
+		new ParticleEmitter(
+			Position,
+			ExplosionParticle,
+			0.001,
+			0.001,
+			70,
+			sf::Vector2f(0.3, 0.7),
+			sf::Vector2f(250, 450),
+			sf::Vector2f(0,360),
+			sf::Color(220, 220, 180, 70)
+		)
+	);
 
 	Explosion* boom = new Explosion(Position + ((sf::RectangleShape*)_Shape)->getSize() / 2.f, new sf::RectangleShape(((sf::RectangleShape*)_Shape)->getSize() + sf::Vector2f(ExplosiveRange*2, ExplosiveRange * 2)));
 

@@ -32,13 +32,16 @@ int main()
     srand((unsigned)time(NULL));
 
     sf::Clock deltaClock;
-
-    sf::SoundBuffer* MusicBuffer = new sf::SoundBuffer;
-    MusicBuffer->loadFromFile("Neo Nomen - RERUN OST.wav");
-    sf::Sound* Music = new sf::Sound();
-    Music->setBuffer(*MusicBuffer);
-    Music->play();
-    Music->setVolume(40);
+    
+    if (sf::Listener::getGlobalVolume() != 0) {
+        sf::SoundBuffer* MusicBuffer = new sf::SoundBuffer;
+        MusicBuffer->loadFromFile("Neo Nomen - RERUN OST.wav");
+        sf::Sound* Music = new sf::Sound();
+        Music->setBuffer(*MusicBuffer);
+        Music->play();
+        Music->setVolume(40);
+    }
+   
 
     sf::Font* MLFont = new sf::Font;
     MLFont->loadFromFile("MarioLuigi2.ttf");

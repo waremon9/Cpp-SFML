@@ -211,6 +211,25 @@ void removeOuOfBoundBall() {
     }
 
     for (int i = ballToDelete.size() - 1; i >= 0; i--) {
+
+        AllParticleEmitters.push_back(
+            new ParticleEmitter(
+                AllBalls[ballToDelete[i]]->getPosition(),
+                new ParticleSimple(
+                    new sf::CircleShape(0.9, 10),
+                    18,
+                    false
+                ),
+                0.45,
+                0.01,
+                6,
+                sf::Vector2f(0.25, 0.4),
+                sf::Vector2f(700, 1000),
+                sf::Vector2f(240, 300),
+                sf::Color::White
+            )
+        );
+
         delete AllBalls[ballToDelete[i]];
         AllBalls.erase(AllBalls.begin() + ballToDelete[i]);
     }

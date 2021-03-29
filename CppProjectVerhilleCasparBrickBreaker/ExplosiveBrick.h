@@ -1,5 +1,6 @@
 #pragma once
 #include "Brick.h"
+#include "ParticleComplex.h"
 #include <SFML/Audio.hpp>
 
 class ExplosiveBrick : public Brick
@@ -9,6 +10,8 @@ private:
 	bool AlreadyExplode;
 
 	sf::Sprite* BombIcon;
+
+	ParticleComplex* ExplosionParticle = nullptr;
 
 	sf::SoundBuffer* Buffer = nullptr;
 	sf::Sound* BoomSound = nullptr;
