@@ -193,11 +193,10 @@ void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls,
                 }
             }
         }
+        if (hitSomething) AllBalls[ballIndex - 1]->playHitSound();
+
         ballIndex++;
     }
-    
-
-    
 }
 
 void removeOuOfBoundBall() {

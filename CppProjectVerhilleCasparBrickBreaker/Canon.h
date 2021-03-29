@@ -2,6 +2,7 @@
 #pragma once
 #include <SFML/Audio.hpp>
 #include "SpriteEntity.h"
+#include "ParticleComplex.h"
 
 class Canon : public SpriteEntity
 {
@@ -12,6 +13,8 @@ private:
 	float BaseCooldown;
 	float Cooldown;
 	float BallSpeed;
+
+	ParticleComplex* ShootParticle = nullptr;
 
 	sf::SoundBuffer* Buffer = nullptr;
 	sf::Sound* ShootSound = nullptr;

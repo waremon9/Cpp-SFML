@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Global.h"
 #include "Function.h"
 #include "Ball.h"
@@ -26,9 +27,18 @@ std::vector<ParticleEmitter*> AllParticleEmitters;
 
 int main()
 {
+    sf::Listener::setGlobalVolume(0); // global sound volume
+
     srand((unsigned)time(NULL));
 
     sf::Clock deltaClock;
+
+    sf::SoundBuffer* MusicBuffer = new sf::SoundBuffer;
+    MusicBuffer->loadFromFile("Neo Nomen - RERUN OST.wav");
+    sf::Sound* Music = new sf::Sound();
+    Music->setBuffer(*MusicBuffer);
+    Music->play();
+    Music->setVolume(40);
 
     sf::Font* MLFont = new sf::Font;
     MLFont->loadFromFile("MarioLuigi2.ttf");

@@ -1,5 +1,6 @@
 #pragma once
 #include "Brick.h"
+#include <SFML/Audio.hpp>
 
 class ExplosiveBrick : public Brick
 {
@@ -9,6 +10,9 @@ private:
 
 	sf::Sprite* BombIcon;
 
+	sf::SoundBuffer* Buffer = nullptr;
+	sf::Sound* BoomSound = nullptr;
+
 	void explode();
 
 public:
@@ -17,4 +21,3 @@ public:
 	void damage() override;
 	void draw() const override;
 };
-
