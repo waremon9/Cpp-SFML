@@ -5,7 +5,7 @@
 class Brick;
 class Entity;
 
-LifeBrick::LifeBrick(sf::Vector2f pos, int life, sf::Font* font) : Brick(pos)
+LifeBrick::LifeBrick(sf::Vector2f pos, sf::Vector2i coord, int life, sf::Font* font) : Brick(pos, coord)
 {
 	Life = life;
 

@@ -1,8 +1,9 @@
 #include "Brick.h"
 
-Brick::Brick(sf::Vector2<float> position) : ShapeEntity(position)
+Brick::Brick(sf::Vector2f position, sf::Vector2i coord) : ShapeEntity(position)
 {
 	Life = 1;
+	Coordinate = coord;
 
 	_Shape = new sf::RectangleShape{ sf::Vector2f(90,40) };
 	_Shape->setPosition(Position);

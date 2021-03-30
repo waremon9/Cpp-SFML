@@ -12,7 +12,7 @@ private:
 	void resetCooldown() { RegenCooldown = BaseRegenCooldown; }
 
 public:
-	RegenBrick(sf::Vector2f, int, sf::Font*);//Position, Life amount
+	RegenBrick(sf::Vector2f, sf::Vector2i, int, sf::Font*);//Position, Life amount
 	void update(float) override;
 };
 

@@ -3,7 +3,7 @@
 #include "Function.h"
 #include <iostream>
 
-ExplosiveBrick::ExplosiveBrick(sf::Vector2<float> pos) : Brick(pos)
+ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
 {
 	ExplosiveRange = 30;
 	AlreadyExplode = false;

@@ -10,7 +10,7 @@ protected:
 	void UpdateTextNumber();
 
 public:
-	LifeBrick(sf::Vector2f, int, sf::Font*);//Position, Life amount
+	LifeBrick(sf::Vector2f, sf::Vector2i, int, sf::Font*);//Position, Life amount
 
 	void draw() const override;
 	void damage() override;

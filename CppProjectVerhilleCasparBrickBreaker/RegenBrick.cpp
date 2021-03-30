@@ -1,6 +1,6 @@
 #include "RegenBrick.h"
 
-RegenBrick::RegenBrick(sf::Vector2f pos, int life, sf::Font* font) : LifeBrick(pos, life, font)
+RegenBrick::RegenBrick(sf::Vector2f pos, sf::Vector2i coord, int life, sf::Font* font) : LifeBrick(pos, coord, life, font)
 {
 	MaxLife = life;
 

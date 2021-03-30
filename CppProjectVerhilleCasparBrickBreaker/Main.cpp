@@ -24,6 +24,7 @@ std::vector<Brick*> AllBricks;
 std::vector<GameBorder*> AllBorders;
 std::vector<Particle*> AllParticles;
 std::vector<ParticleEmitter*> AllParticleEmitters;
+std::vector<std::vector<Brick*>> BricksTableau;
 
 int main()
 {
@@ -53,26 +54,31 @@ int main()
     AllBorders.push_back(new GameBorder(sf::Vector2f(window.getSize().x, 0), sf::Vector2f(BorderThickness, window.getSize().y)));//right
 
     //bricks
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 5; j++) {
+    for (int y = 0; y < 5; y++) {
+        std::vector<Brick*> ligne;
+        for (int x = 0; x < 10; x++) {
+            Brick* b;
             switch (RandomInt(0,3) % 4)
             {
             case 0:
-                AllBricks.push_back(new Brick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
+                b = new Brick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x,y));
                 break;
             case 1:
-                AllBricks.push_back(new LifeBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(3, 5), MLFont));
+                b = new LifeBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(3, 5), MLFont);
                 break;
             case 2:
-                AllBricks.push_back(new RegenBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }, RandomInt(2, 3), MLFont));
+                b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), MLFont);
                 break;
             case 3:
-                AllBricks.push_back(new ExplosiveBrick(sf::Vector2f{ 25 + i * 100.f, 20 + j * 50.f }));
+                b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
                 break;
             default:
                 break;
             }
+            ligne.push_back(b);
+            AllBricks.push_back(b);
         }
+        BricksTableau.push_back(ligne);
     }
 
     //Canon

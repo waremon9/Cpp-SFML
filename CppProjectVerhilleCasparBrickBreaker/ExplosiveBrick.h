@@ -19,7 +19,7 @@ private:
 	void explode();
 
 public:
-	ExplosiveBrick(sf::Vector2<float>); //position
+	ExplosiveBrick(sf::Vector2f, sf::Vector2i); //position
 
 	void damage() override;
 	void draw() const override;
