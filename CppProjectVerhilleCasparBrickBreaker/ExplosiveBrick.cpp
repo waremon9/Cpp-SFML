@@ -54,7 +54,9 @@ void ExplosiveBrick::explode()
 {
 	BoomSound->play();
 
-	AllParticleEmitters.push_back(
+	GameManager* GM = GameManager::getInstance();
+
+	GM->getAllParticleEmitters().push_back(
 		new ParticleEmitter(
 			Position,
 			ExplosionParticle,
@@ -68,6 +70,8 @@ void ExplosiveBrick::explode()
 		)
 	);
 
+	NomMarrantTableauUneDimension* BricksTableau = GM->getBricksTableau();
+
 	if (Coordinate.x != 0 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y)->damage();
 	if (Coordinate.x != BricksTableau->getWidth() - 1 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y)->damage();
 	if (Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1)->damage();
@@ -77,8 +81,6 @@ void ExplosiveBrick::explode()
 	if (Coordinate.x != BricksTableau->getWidth() - 1 && Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1)->damage();
 	if (Coordinate.x != 0 && Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1)->damage();
 	if (Coordinate.x != BricksTableau->getWidth() - 1 && Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y + 1)->damage();
-
-
 }
 
 void ExplosiveBrick::damage()
@@ -93,5 +95,5 @@ void ExplosiveBrick::damage()
 
 void ExplosiveBrick::draw() const {
 	Brick::draw();
-	window.draw(*BombIcon);
+	GameManager::getInstance()->getWindow()->draw(*BombIcon);
 }

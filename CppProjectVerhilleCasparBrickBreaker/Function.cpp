@@ -92,12 +92,14 @@ bool ballIntersects(const Entity* E1, const Entity* E2) {
 
 void CheckCollisions()
 {
+    GameManager* GM = GameManager::getInstance();
+
     int ballIndex = 1;
-    for (Ball* ball : allBalls) {
+    for (Ball* ball : GM->getAllBalls()) {
 
         bool hitSomething = false;
 
-        for (Brick* brick : allBricks)
+        for (Brick* brick : GM->getAllBricks())
         {
             if (intersects(ball, brick))
             {
@@ -135,7 +137,7 @@ void CheckCollisions()
             }
         }
 
-        for (Entity* border : allBorders)
+        for (Entity* border : GM->getAllBorders())
         {
             if (intersects(ball, border))
             {
@@ -170,42 +172,44 @@ void CheckCollisions()
         }
 
 
-        for (int i = ballIndex; i < allBalls.size(); i++ ) {
-            if (intersects(ball, allBalls[i]))
+        for (int i = ballIndex; i < GM->getAllBalls().size(); i++ ) {
+            if (intersects(ball, GM->getAllBalls()[i]))
             {
-                if (!vectorContain(((Ball*)ball)->getCollisionVector(), allBalls[i]))
+                if (!vectorContain(((Ball*)ball)->getCollisionVector(), GM->getAllBalls()[i]))
                 {
                     if (!hitSomething) {//first hit, update direction
                         ((Ball*)ball)->clearInCollisionVector();
-                        allBalls[i]->clearInCollisionVector();
+                        GM->getAllBalls()[i]->clearInCollisionVector();
 
                         sf::Vector2<float> tmpDir = ((Ball*)ball)->getDirection();
-                        ((Ball*)ball)->setDirection(allBalls[i]->getDirection());
-                        allBalls[i]->setDirection(tmpDir);
+                        ((Ball*)ball)->setDirection(GM->getAllBalls()[i]->getDirection());
+                        GM->getAllBalls()[i]->setDirection(tmpDir);
                         float tmpVel = ((Ball*)ball)->getVelocity();
-                        ((Ball*)ball)->setVelocity(allBalls[i]->getVelocity());
-                        allBalls[i]->setVelocity(tmpVel);
+                        ((Ball*)ball)->setVelocity(GM->getAllBalls()[i]->getVelocity());
+                        GM->getAllBalls()[i]->setVelocity(tmpVel);
 
                         hitSomething = true;
                     }
 
-                    ((Ball*)ball)->addInCollisionVector(allBalls[i]);
-                    allBalls[i]->addInCollisionVector(ball);
+                    ((Ball*)ball)->addInCollisionVector(GM->getAllBalls()[i]);
+                    GM->getAllBalls()[i]->addInCollisionVector(ball);
                 }
             }
         }
-        if (hitSomething) AllBalls[ballIndex - 1]->playHitSound();
+        if (hitSomething) GM->getAllBalls()[ballIndex - 1]->playHitSound();
 
         ballIndex++;
     }
 }
 
 void removeOutOfBoundBall() {
+    GameManager* GM = GameManager::getInstance();
+
     std::vector<int> ballToDelete;
     int index = 0;
 
-    for (Ball* b : AllBalls) {
-        if (b->getPosition().y>window.getSize().y + b->getRadius()) {
+    for (Ball* b : GM->getAllBalls()) {
+        if (b->getPosition().y > GM->getWindow()->getSize().y + b->getRadius()) {
             ballToDelete.push_back(index);
         }
         index++;
@@ -213,9 +217,9 @@ void removeOutOfBoundBall() {
 
     for (int i = ballToDelete.size() - 1; i >= 0; i--) {
 
-        AllParticleEmitters.push_back(
+        GM->getAllParticleEmitters().push_back(
             new ParticleEmitter(
-                AllBalls[ballToDelete[i]]->getPosition(),
+                GM->getAllBalls()[ballToDelete[i]]->getPosition(),
                 new ParticleSimple(
                     new sf::CircleShape(0.9, 10),
                     18,
@@ -231,16 +235,18 @@ void removeOutOfBoundBall() {
             )
         );
 
-        delete AllBalls[ballToDelete[i]];
-        AllBalls.erase(AllBalls.begin() + ballToDelete[i]);
+        delete GM->getAllBalls()[ballToDelete[i]];
+        GM->getAllBalls().erase(GM->getAllBalls().begin() + ballToDelete[i]);
     }
 }
 
 void removeDeadBlock() {
+    GameManager* GM = GameManager::getInstance();
+
     std::vector<int> blockToDelete;
     int index = 0;
 
-    for (Brick* b : AllBricks) {
+    for (Brick* b : GM->getAllBricks()) {
         if (b->getLife() <= 0) {
             blockToDelete.push_back(index);
         }
@@ -249,12 +255,9 @@ void removeDeadBlock() {
 
     for (int i = blockToDelete.size() - 1; i >= 0; i--) {
 
-
-        //WARNING!!! Un peu barbare mais c'est pour tester si ca fonctionne
-
-        AllParticleEmitters.push_back(
+        GM->getAllParticleEmitters().push_back(
             new ParticleEmitter(
-                AllBricks[blockToDelete[i]]->getPosition() + ((sf::RectangleShape*)AllBricks[blockToDelete[i]]->getShape())->getSize() / 2.f,
+                GM->getAllBricks()[blockToDelete[i]]->getPosition() + ((sf::RectangleShape*)GM->getAllBricks()[blockToDelete[i]]->getShape())->getSize() / 2.f,
                 new ParticleSimple(
                     new sf::CircleShape(2.2, 10),
                     12,
@@ -266,23 +269,24 @@ void removeDeadBlock() {
                 sf::Vector2f(0.12, 0.4),
                 sf::Vector2f(100, 250),
                 sf::Vector2f(0, 360),
-                AllBricks[blockToDelete[i]]->getShape()->getFillColor()
+                GM->getAllBricks()[blockToDelete[i]]->getShape()->getFillColor()
             )
         );
 
-        //Fin du warning. A la prochaine.
-        BricksTableau->setBrickAt(nullptr, AllBricks[blockToDelete[i]]->getCoordinate());
+        GM->getBricksTableau()->setBrickAt(nullptr, GM->getAllBricks()[blockToDelete[i]]->getCoordinate());
 
-        delete AllBricks[blockToDelete[i]];
-        AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
+        delete GM->getAllBricks()[blockToDelete[i]];
+        GM->getAllBricks().erase(GM->getAllBricks().begin() + blockToDelete[i]);
     }
 }
 //2 tableau
 void removeParticle() {
+    GameManager* GM = GameManager::getInstance();
+
     std::vector<int> particleToDelete;
     int index = 0;
 
-    for (Particle* p : AllParticles) {
+    for (Particle* p : GM->getAllParticles()) {
         if (p->getLifeTime() <= 0) {
             particleToDelete.push_back(index);
         }
@@ -290,16 +294,18 @@ void removeParticle() {
     }
 
     for (int i = particleToDelete.size() - 1; i >= 0; i--) {
-        delete AllParticles[particleToDelete[i]];
-        AllParticles.erase(AllParticles.begin() + particleToDelete[i]);
+        delete GM->getAllParticles()[particleToDelete[i]];
+        GM->getAllParticles().erase(GM->getAllParticles().begin() + particleToDelete[i]);
     }
 }
 
 void removeParticleEmitter() {
+    GameManager* GM = GameManager::getInstance();
+
     std::vector<int> particleEmitterToDelete;
     int index = 0;
 
-    for (ParticleEmitter* pe : AllParticleEmitters) {
+    for (ParticleEmitter* pe : GM->getAllParticleEmitters()) {
         if (pe->getEmitterLifeTime() <= 0) {
             particleEmitterToDelete.push_back(index);
         }
@@ -307,7 +313,7 @@ void removeParticleEmitter() {
     }
 
     for (int i = particleEmitterToDelete.size() - 1; i >= 0; i--) {
-        delete AllParticleEmitters[particleEmitterToDelete[i]];
-        AllParticleEmitters.erase(AllParticleEmitters.begin() + particleEmitterToDelete[i]);
+        delete GM->getAllParticleEmitters()[particleEmitterToDelete[i]];
+        GM->getAllParticleEmitters().erase(GM->getAllParticleEmitters().begin() + particleEmitterToDelete[i]);
     }
 }

@@ -29,7 +29,7 @@ void ParticleSimple::update(float dt)
 void ParticleSimple::draw() const
 {
 	Particle::draw();
-	window.draw(*_Particle);
+	GameManager::getInstance()->getWindow()->draw(*_Particle);
 }
 
 ParticleSimple* ParticleSimple::clone()

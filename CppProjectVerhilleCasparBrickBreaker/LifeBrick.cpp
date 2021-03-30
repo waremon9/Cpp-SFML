@@ -1,5 +1,4 @@
 #include "LifeBrick.h"
-#include "Global.h"
 #include <iostream>
 
 class Brick;
@@ -31,7 +30,7 @@ void LifeBrick::UpdateTextNumber()
 
 void LifeBrick::draw() const {
 	Brick::draw();
-	window.draw(*TextNumber);
+	GameManager::getInstance()->getWindow()->draw(*TextNumber);
 }
 
 void LifeBrick::damage()

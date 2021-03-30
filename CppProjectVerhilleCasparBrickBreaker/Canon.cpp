@@ -69,18 +69,18 @@ void Canon::shoot()
 {
 	GameManager* GM = GameManager::getInstance();
 
-	if (Cooldown<=0 && AllBalls.size()<3) {
+	if (Cooldown<=0 && GM->getAllBalls().size()<3) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
 		sf::Vector2f canonFront = Position + Direction * _Sprite->getOrigin().y * _Sprite->getScale().y;
 		ball->setPosition(canonFront);
-		AllBalls.push_back(ball);
+		GM->getAllBalls().push_back(ball);
 
 		
 
 		float calculatedAngle = Angle * 180 / 3.1415 + 90;
 
-		AllParticleEmitters.push_back(
+		GM->getAllParticleEmitters().push_back(
 			new ParticleEmitter(
 				canonFront - sf::Vector2f(45,40),
 				ShootParticle,

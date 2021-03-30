@@ -25,7 +25,7 @@ void ParticleComplex::update(float dt)
 
 void ParticleComplex::draw() const
 {
-	window.draw(*_Particle);
+	GameManager::getInstance()->getWindow()->draw(*_Particle);
 }
 
 ParticleComplex* ParticleComplex::clone()

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 class Ball;
 class Brick;
@@ -8,6 +9,7 @@ class GameBorder;
 class NomMarrantTableauUneDimension;
 class Particle;
 class ParticleEmitter;
+class Canon;
 
 class GameManager
 {
@@ -21,8 +23,8 @@ private:
 	float DeltaTime;
 	std::vector<Ball*> AllBalls;
 	std::vector<Brick*> AllBricks;
-	std::vector<GameBorder*> AllBorders;
 	NomMarrantTableauUneDimension* BricksTableau;
+	std::vector<GameBorder*> AllBorders;
 	std::vector<Particle*> AllParticles;
 	std::vector<ParticleEmitter*> AllParticleEmitters;
 	Canon* _Canon;
@@ -33,14 +35,19 @@ private:
 	void deleteElement();
 	void updateScreen();
 
+	void initialize();
+
 public:
-	static GameManager* getInstance() {
-		if (Instance == nullptr) Instance = new GameManager();
-		return Instance;
-	};
+	static GameManager* getInstance();
 
-	void loop();
+	void gameLoop();
 
-	sf::RenderWindow* getWindow() { return Window; }
+	sf::RenderWindow* getWindow() const { return Window; }
+	std::vector<Ball*>& getAllBalls() { return AllBalls; }
+	std::vector<Brick*>& getAllBricks() { return AllBricks; }
+	std::vector<GameBorder*>& getAllBorders() { return AllBorders; }
+	std::vector<ParticleEmitter*>& getAllParticleEmitters() { return AllParticleEmitters; }
+	std::vector<Particle*>& getAllParticles() { return AllParticles; }
+	NomMarrantTableauUneDimension* getBricksTableau() { return BricksTableau; }
 };
 

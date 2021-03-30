@@ -43,7 +43,7 @@ void ParticleEmitter::spawnParticle() {
 	partTmp->setDirection(sf::Vector2f(std::cos(convertToRadian(RandomAngle)), std::sin(convertToRadian(RandomAngle))));
 	partTmp->setColor(ParticleColor);
 
-	AllParticles.push_back(partTmp);
+	GameManager::getInstance()->getAllParticles().push_back(partTmp);
 }
 
 void ParticleEmitter::resetCooldown()

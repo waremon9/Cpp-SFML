@@ -3,7 +3,7 @@
 int main()
 {
     GameManager* _GameManager = GameManager::getInstance();
-    _GameManager->loop();
+    _GameManager->gameLoop();
 
     return 0;
 }
