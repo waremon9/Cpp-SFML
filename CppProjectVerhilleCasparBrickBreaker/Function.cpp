@@ -141,11 +141,11 @@ void CheckCollisions()
         {
             if (intersects(ball, border))
             {
-                if (!vectorContain(((Ball*)ball)->getCollisionVector(), border))
+                if (!vectorContain(ball->getCollisionVector(), border))
                 {
                     if (!hitSomething)
                     {//first hit, update direction
-                        ((Ball*)ball)->clearInCollisionVector();
+                        ball->clearInCollisionVector();
 
                         Entity::Side result = whichSide(ball, border);
 
@@ -153,11 +153,11 @@ void CheckCollisions()
                         {
                         case Entity::Side::TOP:
                         case Entity::Side::BOTTOM:
-                            ((Ball*)ball)->inverseDirectionY();
+                            ball->inverseDirectionY();
                             break;
                         case Entity::Side::LEFT:
                         case Entity::Side::RIGHT:
-                            ((Ball*)ball)->inverseDirectionX();
+                            ball->inverseDirectionX();
                             break;
                         default:
                             break;
@@ -173,25 +173,21 @@ void CheckCollisions()
 
 
         for (int i = ballIndex; i < GM->getAllBalls().size(); i++ ) {
-            if (intersects(ball, GM->getAllBalls()[i]))
+            if (ballIntersects(ball, GM->getAllBalls()[i]))
             {
-                if (!vectorContain(((Ball*)ball)->getCollisionVector(), GM->getAllBalls()[i]))
+                if (!vectorContain(ball->getCollisionVector(), GM->getAllBalls()[i]))
                 {
                     if (!hitSomething) {//first hit, update direction
-                        ((Ball*)ball)->clearInCollisionVector();
+                        ball->clearInCollisionVector();
                         GM->getAllBalls()[i]->clearInCollisionVector();
 
-                        sf::Vector2<float> tmpDir = ((Ball*)ball)->getDirection();
-                        ((Ball*)ball)->setDirection(GM->getAllBalls()[i]->getDirection());
-                        GM->getAllBalls()[i]->setDirection(tmpDir);
-                        float tmpVel = ((Ball*)ball)->getVelocity();
-                        ((Ball*)ball)->setVelocity(GM->getAllBalls()[i]->getVelocity());
-                        GM->getAllBalls()[i]->setVelocity(tmpVel);
+                        ball->Bounce(normalizeVector(ball->getPosition() - GM->getAllBalls()[i]->getPosition()));
+                        GM->getAllBalls()[i]->Bounce(normalizeVector(GM->getAllBalls()[i]->getPosition() - ball->getPosition()));
 
                         hitSomething = true;
                     }
 
-                    ((Ball*)ball)->addInCollisionVector(GM->getAllBalls()[i]);
+                    ball->addInCollisionVector(GM->getAllBalls()[i]);
                     GM->getAllBalls()[i]->addInCollisionVector(ball);
                 }
             }
