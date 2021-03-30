@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Audio.hpp>
-#include "Global.h"
 #include "Function.h"
 #include "SpriteEntity.h"
 
@@ -36,6 +35,7 @@ public:
 	void inverseDirectionY() { Direction.y *= -1; }
 	void playHitSound() { HitSound->play(); }
 	void Bounce(sf::Vector2f);
-	void Move();
+	void update(float);
+	void Move(float);
 };
 

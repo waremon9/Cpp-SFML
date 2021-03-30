@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Global.h"
 #include "ShapeEntity.h"
 
 class Brick : public ShapeEntity

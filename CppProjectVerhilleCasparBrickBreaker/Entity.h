@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Global.h"
+#include "GameManager.h"
 
 class Entity
 {

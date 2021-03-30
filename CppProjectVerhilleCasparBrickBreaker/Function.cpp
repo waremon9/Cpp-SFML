@@ -90,7 +90,7 @@ bool ballIntersects(const Entity* E1, const Entity* E2) {
     return distance < Bound1.width / 2 + Bound2.width / 2;
 }
 
-void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls, std::vector<GameBorder*> allBorders)
+void CheckCollisions()
 {
     int ballIndex = 1;
     for (Ball* ball : allBalls) {
@@ -200,7 +200,7 @@ void CheckCollisions(std::vector<Brick*> allBricks, std::vector<Ball*> allBalls,
     }
 }
 
-void removeOuOfBoundBall() {
+void removeOutOfBoundBall() {
     std::vector<int> ballToDelete;
     int index = 0;
 
@@ -272,11 +272,12 @@ void removeDeadBlock() {
 
         //Fin du warning. A la prochaine.
         BricksTableau->setBrickAt(nullptr, AllBricks[blockToDelete[i]]->getCoordinate());
+
         delete AllBricks[blockToDelete[i]];
         AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
     }
 }
-
+//2 tableau
 void removeParticle() {
     std::vector<int> particleToDelete;
     int index = 0;

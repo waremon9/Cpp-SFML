@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+
 class SpriteEntity : public Entity
 {
 protected:
@@ -13,6 +14,6 @@ public:
 	sf::Sprite* getShape() const { return _Sprite; }
 	sf::FloatRect getGlobalBounds() const override { return _Sprite->getGlobalBounds(); }
 
-	virtual void draw() const override { window.draw(*_Sprite); }
+	virtual void draw() const override { GameManager::getInstance()->getWindow()->draw(*_Sprite); }
 };
 

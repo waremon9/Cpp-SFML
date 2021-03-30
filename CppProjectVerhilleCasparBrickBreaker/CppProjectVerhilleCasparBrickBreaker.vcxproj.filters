@@ -104,8 +104,5 @@
     <ClInclude Include="ParticleComplex.h" />
     <ClInclude Include="NomMarrantTableauUneDimension.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Global.h">
-      <Filter>cpp\Class\Bricks</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

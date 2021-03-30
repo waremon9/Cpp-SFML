@@ -177,7 +177,6 @@
     <ClInclude Include="Function.h" />
     <ClInclude Include="GameBorder.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Global.h" />
     <ClInclude Include="LifeBrick.h" />
     <ClInclude Include="NomMarrantTableauUneDimension.h" />
     <ClInclude Include="Particle.h" />

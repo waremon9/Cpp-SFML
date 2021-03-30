@@ -13,6 +13,6 @@ public:
 	sf::Shape* getShape() const { return _Shape; }
 	sf::FloatRect getGlobalBounds() const override { return _Shape->getGlobalBounds(); }
 
-	virtual void draw() const override { window.draw(*_Shape); }
+	virtual void draw() const override { GameManager::getInstance()->getWindow()->draw(*_Shape); }
 };
 

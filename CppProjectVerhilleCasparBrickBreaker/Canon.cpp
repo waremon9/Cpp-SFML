@@ -34,8 +34,10 @@ Canon::Canon()
 		true
 	);
 
+	GameManager* GM = GameManager::getInstance();
+
 	//position and size
-	Position = sf::Vector2f(window.getSize().x / 2, window.getSize().y);
+	Position = sf::Vector2f(GM->getWindow()->getSize().x / 2, GM->getWindow()->getSize().y);
 	_Sprite->setPosition(Position);
 	
 	sf::FloatRect Bound = _Sprite->getGlobalBounds();
@@ -65,6 +67,8 @@ void Canon::setRotation(float angle)
 
 void Canon::shoot()
 {
+	GameManager* GM = GameManager::getInstance();
+
 	if (Cooldown<=0 && AllBalls.size()<3) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));

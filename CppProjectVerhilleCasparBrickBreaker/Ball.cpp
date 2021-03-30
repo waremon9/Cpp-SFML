@@ -37,8 +37,13 @@ void Ball::Bounce( sf::Vector2f n) {
     Direction = w - u;
 }
 
-void Ball::Move() {
+void Ball::update(float dt)
+{
+    Move(dt);
+}
+
+void Ball::Move(float dt) {
     //update ball position
-    Position += Direction * Velocity * deltaTime;
+    Position += Direction * Velocity * dt;
     _Sprite->setPosition(Position);
 }
