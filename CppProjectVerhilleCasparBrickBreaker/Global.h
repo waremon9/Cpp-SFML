@@ -5,11 +5,12 @@ class Ball;
 class Brick;
 class Particle;
 class ParticleEmitter;
+class NomMarrantTableauUneDimension;
 
 extern sf::RenderWindow window;
 extern float deltaTime;
 extern std::vector<Ball*> AllBalls;
 extern std::vector<Brick*> AllBricks;
-extern std::vector<std::vector<Brick*>> BricksTableau;
+extern NomMarrantTableauUneDimension* BricksTableau;
 extern std::vector<Particle*> AllParticles;
 extern std::vector<ParticleEmitter*> AllParticleEmitters;

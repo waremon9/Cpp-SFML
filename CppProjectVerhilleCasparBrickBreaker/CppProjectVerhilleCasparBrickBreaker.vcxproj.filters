@@ -58,18 +58,14 @@
       <Filter>cpp\Class\Bricks</Filter>
     </ClCompile>
     <ClCompile Include="ParticleEmitter.cpp" />
-    <ClCompile Include="Explosion.cpp">
-      <Filter>cpp\Class</Filter>
-    </ClCompile>
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSimple.cpp" />
     <ClCompile Include="ParticleComplex.cpp" />
+    <ClCompile Include="NomMarrantTableauUneDimension.cpp" />
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.h">
       <Filter>header</Filter>
     </ClInclude>
     <ClInclude Include="Ball.h">
@@ -103,11 +99,13 @@
       <Filter>header\Class\Bricks</Filter>
     </ClInclude>
     <ClInclude Include="ParticleEmitter.h" />
-    <ClInclude Include="Explosion.h">
-      <Filter>header\Class</Filter>
-    </ClInclude>
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSimple.h" />
     <ClInclude Include="ParticleComplex.h" />
+    <ClInclude Include="NomMarrantTableauUneDimension.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Global.h">
+      <Filter>cpp\Class\Bricks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

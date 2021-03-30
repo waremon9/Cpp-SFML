@@ -1,6 +1,6 @@
 #include "ExplosiveBrick.h"
-#include "Explosion.h"
 #include "Function.h"
+#include "NomMarrantTableauUneDimension.h"
 #include <iostream>
 
 ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
@@ -68,17 +68,17 @@ void ExplosiveBrick::explode()
 		)
 	);
 
-	Explosion* boom = new Explosion(Position + ((sf::RectangleShape*)_Shape)->getSize() / 2.f, new sf::RectangleShape(((sf::RectangleShape*)_Shape)->getSize() + sf::Vector2f(ExplosiveRange*2, ExplosiveRange * 2)));
+	if (Coordinate.x != 0 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y)->damage();
+	if (Coordinate.x != BricksTableau->getWidth() - 1 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y)->damage();
+	if (Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1)->damage();
+	if (Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x, Coordinate.y + 1)->damage();
 
-	for (Brick* b : AllBricks) {
-		if (b != this) {
-			if (intersects(boom, b)) {
-				b->damage();
-			}
-		}
-	}
+	if (Coordinate.x != 0 && Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y - 1)->damage();
+	if (Coordinate.x != BricksTableau->getWidth() - 1 && Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1)->damage();
+	if (Coordinate.x != 0 && Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1)->damage();
+	if (Coordinate.x != BricksTableau->getWidth() - 1 && Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y + 1)->damage();
 
-	delete boom;
+
 }
 
 void ExplosiveBrick::damage()

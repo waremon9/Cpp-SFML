@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 #include <iostream>
+#include "NomMarrantTableauUneDimension.h"
 
 //return random int between min(include) and max(include)
 int RandomInt(int min, int max) {
@@ -270,7 +271,7 @@ void removeDeadBlock() {
         );
 
         //Fin du warning. A la prochaine.
-
+        BricksTableau->setBrickAt(nullptr, AllBricks[blockToDelete[i]]->getCoordinate());
         delete AllBricks[blockToDelete[i]];
         AllBricks.erase(AllBricks.begin() + blockToDelete[i]);
     }

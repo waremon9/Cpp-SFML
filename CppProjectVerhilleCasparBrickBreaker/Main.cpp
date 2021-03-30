@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <list>
 #include "Global.h"
 #include "Function.h"
 #include "Ball.h"
@@ -14,6 +15,7 @@
 #include "ParticleSimple.h"
 #include "ParticleComplex.h"
 #include "ParticleEmitter.h"
+#include "NomMarrantTableauUneDimension.h"
 
 //global
 sf::RenderWindow window(sf::VideoMode(1050,700), "HelloWorld");
@@ -24,11 +26,11 @@ std::vector<Brick*> AllBricks;
 std::vector<GameBorder*> AllBorders;
 std::vector<Particle*> AllParticles;
 std::vector<ParticleEmitter*> AllParticleEmitters;
-std::vector<std::vector<Brick*>> BricksTableau;
+NomMarrantTableauUneDimension* BricksTableau;
 
 int main()
 {
-    sf::Listener::setGlobalVolume(0); // global sound volume
+    sf::Listener::setGlobalVolume(50); // global sound volume
 
     srand((unsigned)time(NULL));
 
@@ -54,8 +56,8 @@ int main()
     AllBorders.push_back(new GameBorder(sf::Vector2f(window.getSize().x, 0), sf::Vector2f(BorderThickness, window.getSize().y)));//right
 
     //bricks
+    BricksTableau = new NomMarrantTableauUneDimension(10, 5);
     for (int y = 0; y < 5; y++) {
-        std::vector<Brick*> ligne;
         for (int x = 0; x < 10; x++) {
             Brick* b;
             switch (RandomInt(0,3) % 4)
@@ -75,10 +77,9 @@ int main()
             default:
                 break;
             }
-            ligne.push_back(b);
             AllBricks.push_back(b);
+            BricksTableau->pushBack(b);
         }
-        BricksTableau.push_back(ligne);
     }
 
     //Canon
