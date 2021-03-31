@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include "Function.h"
 #include "SpriteEntity.h"
+#include "SoundManager.h"
 
 class Brick;
 
@@ -14,9 +15,6 @@ private:
 	float Radius = 18;
 
 	std::vector<Entity*> CollisionVector;
-
-	sf::SoundBuffer* Buffer = nullptr;
-	sf::Sound* HitSound = nullptr;
 
 public:
 	Ball(float, sf::Vector2f, float); //speed, position, launchAngle
@@ -33,7 +31,7 @@ public:
 	void clearInCollisionVector() { CollisionVector.clear(); }
 	void inverseDirectionX() { Direction.x *= -1; }
 	void inverseDirectionY() { Direction.y *= -1; }
-	void playHitSound() { HitSound->play(); }
+	void playHitSound();
 	void Bounce(sf::Vector2f);
 	void update(float);
 	void Move(float);

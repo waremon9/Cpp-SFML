@@ -13,9 +13,6 @@ private:
 
 	ParticleComplex* ExplosionParticle = nullptr;
 
-	sf::SoundBuffer* Buffer = nullptr;
-	sf::Sound* BoomSound = nullptr;
-
 	void explode();
 
 public:

@@ -16,6 +16,7 @@
 #include "ParticleComplex.h"
 #include "ParticleEmitter.h"
 #include "NomMarrantTableauUneDimension.h"
+#include "SoundManager.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -150,12 +151,7 @@ void GameManager::initialize() {
 	sf::Listener::setGlobalVolume(50); // global sound volume
 
 	if (sf::Listener::getGlobalVolume() != 0) {
-		sf::SoundBuffer* MusicBuffer = new sf::SoundBuffer;
-		MusicBuffer->loadFromFile("Neo Nomen - RERUN OST.wav");
-		sf::Sound* Music = new sf::Sound();
-		Music->setBuffer(*MusicBuffer);
-		Music->play();
-		Music->setVolume(40);
+        SoundManager::getInstance()->playSound(SoundManager::SoundLabel::RerunOst);
 	}
 
 	sf::Font* MLFont = new sf::Font;

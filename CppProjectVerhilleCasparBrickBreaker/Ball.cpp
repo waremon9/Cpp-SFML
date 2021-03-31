@@ -20,12 +20,11 @@ Ball::Ball(float speed, sf::Vector2f position, float angle) : SpriteEntity(posit
     Direction = normalizeVector(sf::Vector2f { cos(angle), sin(angle) });
 
     Direction * 2.0f;
+}
 
-    //hit sound
-    Buffer = new sf::SoundBuffer;
-    Buffer->loadFromFile("Toc.wav");
-    HitSound = new sf::Sound();
-    HitSound->setBuffer(*Buffer);
+void Ball::playHitSound()
+{
+    SoundManager::getInstance()->playSound(SoundManager::SoundLabel::Toc);
 }
 
 //take the surface normal of obstacle and change velocity so the ball bounce

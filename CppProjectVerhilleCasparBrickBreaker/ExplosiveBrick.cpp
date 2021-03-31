@@ -2,6 +2,7 @@
 #include "Function.h"
 #include "NomMarrantTableauUneDimension.h"
 #include <iostream>
+#include "SoundManager.h"
 
 ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
 {
@@ -41,18 +42,11 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos
 		5,
 		true
 	);
-
-	//hit sound
-	Buffer = new sf::SoundBuffer;
-	Buffer->loadFromFile("Boom.wav");
-	BoomSound = new sf::Sound();
-	BoomSound->setBuffer(*Buffer);
-	BoomSound->setVolume(25);
 }
 
 void ExplosiveBrick::explode()
 {
-	BoomSound->play();
+	SoundManager::getInstance()->playSound(SoundManager::SoundLabel::Boom);
 
 	GameManager* GM = GameManager::getInstance();
 

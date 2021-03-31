@@ -166,6 +166,7 @@
     <ClCompile Include="ParticleSimple.cpp" />
     <ClCompile Include="RegenBrick.cpp" />
     <ClCompile Include="ShapeEntity.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClInclude Include="ParticleSimple.h" />
     <ClInclude Include="RegenBrick.h" />
     <ClInclude Include="ShapeEntity.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteEntity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

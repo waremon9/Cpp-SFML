@@ -16,9 +16,6 @@ private:
 
 	ParticleComplex* ShootParticle = nullptr;
 
-	sf::SoundBuffer* Buffer = nullptr;
-	sf::Sound* ShootSound = nullptr;
-
 	void ResetCooldown() { Cooldown = BaseCooldown; }
 
 public:

@@ -1,5 +1,6 @@
 #include "Canon.h"
 #include "Ball.h"
+#include "SoundManager.h"
 
 Canon::Canon()
 {
@@ -26,7 +27,7 @@ Canon::Canon()
 	tex->setSmooth(true);
 
 	spr->setTexture(*tex);
-	spr->setScale(0.08, 0.08);
+	spr->setScale(0.08f, 0.08f);
 
 	ShootParticle = new ParticleComplex(
 		spr,
@@ -37,7 +38,7 @@ Canon::Canon()
 	GameManager* GM = GameManager::getInstance();
 
 	//position and size
-	Position = sf::Vector2f(GM->getWindow()->getSize().x / 2, GM->getWindow()->getSize().y);
+	Position = sf::Vector2f(GM->getWindow()->getSize().x / 2.f, GM->getWindow()->getSize().y);
 	_Sprite->setPosition(Position);
 	
 	sf::FloatRect Bound = _Sprite->getGlobalBounds();
@@ -45,18 +46,12 @@ Canon::Canon()
 	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 4.65);
 	_Sprite->setOrigin(Origin);
 
-	_Sprite->setScale(0.22,0.22);
-
-	//Shoot sound
-	Buffer = new sf::SoundBuffer;
-	Buffer->loadFromFile("Piou.wav");
-	ShootSound = new sf::Sound();
-	ShootSound->setBuffer(*Buffer);
+	_Sprite->setScale(0.22f,0.22f);
 }
 
 void Canon::setRotation(float angle)
 {
-	float calculatedAngle = angle * 180 / 3.1415 + 90;
+	float calculatedAngle = angle * 180.f / 3.1415f + 90;
 	if (calculatedAngle >= -70 && calculatedAngle <= 70) {
 		Angle = angle;
 		_Sprite->setRotation(calculatedAngle);
@@ -78,7 +73,7 @@ void Canon::shoot()
 
 		
 
-		float calculatedAngle = Angle * 180 / 3.1415 + 90;
+		float calculatedAngle = Angle * 180 / 3.1415f + 90;
 
 		GM->getAllParticleEmitters().push_back(
 			new ParticleEmitter(
@@ -87,14 +82,15 @@ void Canon::shoot()
 				0.001,
 				0.001,
 				30,
-				sf::Vector2f(0.2, 0.5),
-				sf::Vector2f(150, 300),
-				sf::Vector2f(calculatedAngle - 30,calculatedAngle - 150),
+				sf::Vector2f(0.2f, 0.5f),
+				sf::Vector2f(150.f, 300.f),
+				sf::Vector2f(calculatedAngle - 30, calculatedAngle - 150),
 				sf::Color(255, 255, 255, 20)
 			)
 		);
 
-		ShootSound->play();
+
+		SoundManager::getInstance()->playSound(SoundManager::SoundLabel::Piou);
 
 		ResetCooldown();
 	}

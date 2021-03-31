@@ -63,6 +63,7 @@
     <ClCompile Include="ParticleComplex.cpp" />
     <ClCompile Include="NomMarrantTableauUneDimension.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -104,5 +105,6 @@
     <ClInclude Include="ParticleComplex.h" />
     <ClInclude Include="NomMarrantTableauUneDimension.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="SoundManager.h" />
   </ItemGroup>
 </Project>
