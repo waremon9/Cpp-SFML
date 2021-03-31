@@ -7,6 +7,7 @@
 #include <iostream>
 #include "NomMarrantTableauUneDimension.h"
 #include <math.h>
+#include "UIManager.h"
 
 //return random int between min(include) and max(include)
 int RandomInt(int min, int max) {
@@ -260,7 +261,7 @@ void removeDeadBlock() {
     for (Brick* b : GM->getAllBricks()) {
         if (b->getLife() <= 0) {
             blockToDelete.push_back(index);
-            GM->addScore(100);
+            UIManager::getInstance()->addScore(100);
         }
         index++;
     }

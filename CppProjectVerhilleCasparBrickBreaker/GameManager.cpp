@@ -17,6 +17,7 @@
 #include "ParticleEmitter.h"
 #include "NomMarrantTableauUneDimension.h"
 #include "SoundManager.h"
+#include "UIManager.h"
 #include "ScorePanel.h"
 
 GameManager* GameManager::Instance = nullptr;
@@ -94,7 +95,6 @@ void GameManager::updateEntity()
     }
 
     _Canon->update(DeltaTime);
-
 }
 
 void GameManager::deleteElement()
@@ -128,7 +128,7 @@ void GameManager::updateScreen()
         if (p->isFrontParticle()) p->draw();
     }
 
-    _ScorePanel->draw();
+    UIManager::getInstance()->drawUI();
 
     // Update the window
     Window->display();
@@ -211,12 +211,4 @@ void GameManager::initialize() {
 			sf::Color(160, 160, 160, 150)//Color of the particle
 		)
 	);
-
-    score = 0;
-    _ScorePanel = new ScorePanel(sf::Vector2f(0,Window->getSize().y - 70));
-}
-
-void GameManager::addScore(int s) {
-    score += s;
-    _ScorePanel->updateScore(score);
 }

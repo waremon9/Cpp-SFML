@@ -169,6 +169,7 @@
     <ClCompile Include="ShapeEntity.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteEntity.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="ShapeEntity.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteEntity.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
