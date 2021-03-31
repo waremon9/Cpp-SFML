@@ -194,17 +194,17 @@ void GameManager::initialize() {
 		new ParticleEmitter(//create emitter
 			(sf::Vector2f)Window->getSize() / 2.f,//Position pf emitter, particle position when spawn
 			new ParticleSimple(//Particle to spawn
-				new sf::CircleShape(3, 10),//Shape of particle , or sprite if ParticleComplex
+				new sf::CircleShape(1.5, 5),//Shape of particle , or sprite if ParticleComplex
 				0, // Gravity strength
 				false //is the particle on front of all or behind
 			),
 			INFINITY,//emitter LifeTime
-			0.05,//Cooldown between burst
+			0.1,//Cooldown between burst
 			1,//Particle each burst
 			sf::Vector2f(3, 3),//Particle LifeTime, random between 2 value
-			sf::Vector2f(400, 600),//Particle Speed, random between 2 value
+			sf::Vector2f(250, 400),//Particle Speed, random between 2 value
 			sf::Vector2f(0, 360),//Particle starting direction, degree, random between 2 value
-			sf::Color(180, 180, 180, 200)//Color of the particle
+			sf::Color(160, 160, 160, 150)//Color of the particle
 		)
 	);
 }

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include "NomMarrantTableauUneDimension.h"
+#include <math.h>
 
 //return random int between min(include) and max(include)
 int RandomInt(int min, int max) {
@@ -81,13 +82,22 @@ Entity::Side whichSide(const Entity* E1, const Entity* E2) {
 bool ballIntersects(const Entity* E1, const Entity* E2) {
     sf::FloatRect Bound1 = E1->getGlobalBounds();
     sf::FloatRect Bound2 = E2->getGlobalBounds();
-    sf::Vector2<float> circle1Center{ (Bound1.left + Bound1.width / 2) , (Bound1.top + Bound1.height / 2) };
-    sf::Vector2<float> circle2Center{ (Bound2.left + Bound2.width / 2) , (Bound2.top + Bound2.height / 2) };
+    sf::Vector2f circle1Center{ (Bound1.left + Bound1.width / 2) , (Bound1.top + Bound1.height / 2) };
+    sf::Vector2f circle2Center{ (Bound2.left + Bound2.width / 2) , (Bound2.top + Bound2.height / 2) };
 
     //get distance between circle1 center and circle2 center
     float distance = distance2Points(circle1Center, circle2Center);
 
     return distance < Bound1.width / 2 + Bound2.width / 2;
+}
+
+sf::Vector2f BallIntersectCenterPoint(const Entity* depart, const Entity* arrivee) {
+    sf::FloatRect Bound1 = depart->getGlobalBounds();
+    sf::FloatRect Bound2 = arrivee->getGlobalBounds();
+    sf::Vector2f departCenter{ (Bound1.left + Bound1.width / 2) , (Bound1.top + Bound1.height / 2) };
+    sf::Vector2f ArriveeCenter{ (Bound2.left + Bound2.width / 2) , (Bound2.top + Bound2.height / 2) };
+
+    return departCenter + (ArriveeCenter - departCenter) / 2.f;
 }
 
 void CheckCollisions()
@@ -111,15 +121,24 @@ void CheckCollisions()
 
                         Entity::Side result = whichSide(ball, brick);
 
+                        sf::Vector2f normal;
+                        sf::Vector2f collisionPoint;
+
                         switch (result)
                         {
                         case Entity::Side::TOP:
+                            collisionPoint = ball->getPosition() + sf::Vector2f(0, ball->getRadius());
                         case Entity::Side::BOTTOM:
                             ball->inverseDirectionY();
+                            normal = sf::Vector2f(0,1);
+                            if (collisionPoint == sf::Vector2f(0,0)) collisionPoint = ball->getPosition() - sf::Vector2f(0, ball->getRadius());
                             break;
                         case Entity::Side::LEFT:
+                            collisionPoint = ball->getPosition() + sf::Vector2f(ball->getRadius(),0);
                         case Entity::Side::RIGHT:
                             ball->inverseDirectionX();
+                            normal = sf::Vector2f(1,0);
+                            if (collisionPoint == sf::Vector2f(0, 0)) collisionPoint = ball->getPosition() - sf::Vector2f( ball->getRadius(),0);
                             break;
                         default:
                             break;
@@ -127,7 +146,7 @@ void CheckCollisions()
 
                         hitSomething = true;
 
-
+                        ball->spawnParticleHit(collisionPoint, std::atan2(normal.x, normal.y) * 180 / M_PI);
 
                     }
 
@@ -149,21 +168,31 @@ void CheckCollisions()
 
                         Entity::Side result = whichSide(ball, border);
 
+                        sf::Vector2f normal;
+                        sf::Vector2f collisionPoint;
+
                         switch (result)
                         {
                         case Entity::Side::TOP:
+                            collisionPoint = ball->getPosition() + sf::Vector2f(0, ball->getRadius()) * 0.8f;
                         case Entity::Side::BOTTOM:
                             ball->inverseDirectionY();
+                            normal = sf::Vector2f(0, 1);
+                            if (collisionPoint == sf::Vector2f(0, 0)) collisionPoint = ball->getPosition() - sf::Vector2f(0, ball->getRadius()) * 0.8f;
                             break;
                         case Entity::Side::LEFT:
+                            collisionPoint = ball->getPosition() + sf::Vector2f(ball->getRadius(), 0) * 0.8f;
                         case Entity::Side::RIGHT:
                             ball->inverseDirectionX();
+                            normal = sf::Vector2f(1, 0);
+                            if (collisionPoint == sf::Vector2f(0, 0)) collisionPoint = ball->getPosition() - sf::Vector2f(ball->getRadius(), 0) * 0.8f;
                             break;
                         default:
                             break;
                         }
 
                         hitSomething = true;
+                        ball->spawnParticleHit(collisionPoint, std::atan2(normal.x, normal.y) * 180 / M_PI);
                     }
 
                     ((Ball*)ball)->addInCollisionVector(border);
@@ -187,12 +216,17 @@ void CheckCollisions()
                         hitSomething = true;
                     }
 
+                    sf::Vector2f normal = normalizeVector(ball->getPosition() - GM->getAllBalls()[i]->getPosition());
+                    ball->spawnParticleHit(BallIntersectCenterPoint(ball, GM->getAllBalls()[ballIndex - 1]), std::atan2(normal.x, normal.y) * 180 / M_PI);
+
                     ball->addInCollisionVector(GM->getAllBalls()[i]);
                     GM->getAllBalls()[i]->addInCollisionVector(ball);
                 }
             }
         }
-        if (hitSomething) GM->getAllBalls()[ballIndex - 1]->playHitSound();
+        if (hitSomething) {
+            ball->playHitSound(); //to check later, can be changer i think
+        }
 
         ballIndex++;
     }
@@ -212,25 +246,6 @@ void removeOutOfBoundBall() {
     }
 
     for (int i = ballToDelete.size() - 1; i >= 0; i--) {
-
-        GM->getAllParticleEmitters().push_back(
-            new ParticleEmitter(
-                GM->getAllBalls()[ballToDelete[i]]->getPosition(),
-                new ParticleSimple(
-                    new sf::CircleShape(0.9, 10),
-                    18,
-                    false
-                ),
-                0.45,
-                0.01,
-                6,
-                sf::Vector2f(0.25, 0.4),
-                sf::Vector2f(700, 1000),
-                sf::Vector2f(240, 300),
-                sf::Color::White
-            )
-        );
-
         delete GM->getAllBalls()[ballToDelete[i]];
         GM->getAllBalls().erase(GM->getAllBalls().begin() + ballToDelete[i]);
     }
@@ -275,7 +290,7 @@ void removeDeadBlock() {
         GM->getAllBricks().erase(GM->getAllBricks().begin() + blockToDelete[i]);
     }
 }
-//2 tableau
+
 void removeParticle() {
     GameManager* GM = GameManager::getInstance();
 

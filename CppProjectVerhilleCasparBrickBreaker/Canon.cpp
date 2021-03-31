@@ -43,10 +43,10 @@ Canon::Canon()
 	
 	sf::FloatRect Bound = _Sprite->getGlobalBounds();
 
+	_Sprite->setScale(0.22f,0.22f);
+
 	Origin = sf::Vector2f(Bound.width / 2, Bound.height / 6 * 4.65);
 	_Sprite->setOrigin(Origin);
-
-	_Sprite->setScale(0.22f,0.22f);
 }
 
 void Canon::setRotation(float angle)
@@ -66,12 +66,9 @@ void Canon::shoot()
 
 	if (Cooldown<=0 && GM->getAllBalls().size()<3) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
-		ball->getShape()->setOrigin(sf::Vector2f(ball->getRadius(), ball->getRadius()));
 		sf::Vector2f canonFront = Position + Direction * _Sprite->getOrigin().y * _Sprite->getScale().y;
 		ball->setPosition(canonFront);
 		GM->getAllBalls().push_back(ball);
-
-		
 
 		float calculatedAngle = Angle * 180 / 3.1415f + 90;
 
@@ -88,7 +85,6 @@ void Canon::shoot()
 				sf::Color(255, 255, 255, 20)
 			)
 		);
-
 
 		SoundManager::getInstance()->playSound(SoundManager::SoundLabel::Piou);
 

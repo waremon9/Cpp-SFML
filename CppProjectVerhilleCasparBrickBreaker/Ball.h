@@ -32,6 +32,7 @@ public:
 	void inverseDirectionX() { Direction.x *= -1; }
 	void inverseDirectionY() { Direction.y *= -1; }
 	void playHitSound();
+	void spawnParticleHit(sf::Vector2f, float);
 	void Bounce(sf::Vector2f);
 	void update(float);
 	void Move(float);
