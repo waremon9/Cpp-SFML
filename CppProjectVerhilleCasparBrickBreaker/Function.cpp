@@ -260,6 +260,7 @@ void removeDeadBlock() {
     for (Brick* b : GM->getAllBricks()) {
         if (b->getLife() <= 0) {
             blockToDelete.push_back(index);
+            GM->addScore(100);
         }
         index++;
     }

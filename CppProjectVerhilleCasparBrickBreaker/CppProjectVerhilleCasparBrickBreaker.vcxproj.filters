@@ -64,6 +64,7 @@
     <ClCompile Include="NomMarrantTableauUneDimension.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="ScorePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -106,5 +107,6 @@
     <ClInclude Include="NomMarrantTableauUneDimension.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="ScorePanel.h" />
   </ItemGroup>
 </Project>

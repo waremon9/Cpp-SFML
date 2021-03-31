@@ -10,13 +10,13 @@ class NomMarrantTableauUneDimension;
 class Particle;
 class ParticleEmitter;
 class Canon;
+class ScorePanel;
 
 class GameManager
 {
 private:
 	static GameManager* Instance;
 	GameManager();
-
 
 	sf::RenderWindow* Window;
 	sf::Clock* DeltaClock;
@@ -28,6 +28,9 @@ private:
 	std::vector<Particle*> AllParticles;
 	std::vector<ParticleEmitter*> AllParticleEmitters;
 	Canon* _Canon;
+	ScorePanel* _ScorePanel;
+
+	int score;
 
 	void updateDeltaTime();
 	void processEvent();
@@ -42,6 +45,8 @@ public:
 
 	void gameLoop();
 
+	void addScore(int x);
+
 	sf::RenderWindow* getWindow() const { return Window; }
 	std::vector<Ball*>& getAllBalls() { return AllBalls; }
 	std::vector<Brick*>& getAllBricks() { return AllBricks; }
@@ -49,5 +54,6 @@ public:
 	std::vector<ParticleEmitter*>& getAllParticleEmitters() { return AllParticleEmitters; }
 	std::vector<Particle*>& getAllParticles() { return AllParticles; }
 	NomMarrantTableauUneDimension* getBricksTableau() { return BricksTableau; }
+	int getScore() const { return score; }
 };
 
