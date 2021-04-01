@@ -67,6 +67,7 @@
     <ClCompile Include="ScorePanel.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="RessourceManager.cpp" />
+    <ClCompile Include="BrickABall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -112,5 +113,6 @@
     <ClInclude Include="ScorePanel.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="RessourceManager.h" />
+    <ClInclude Include="BrickABall.h" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include "Function.h"
 #include "Ball.h"
 #include "Brick.h"
+#include "BrickABall.h"
 #include "LifeBrick.h"
 #include "RegenBrick.h"
 #include "ExplosiveBrick.h"
@@ -171,7 +172,7 @@ void GameManager::initialize() {
 	for (int y = 0; y < 5; y++) {
 		for (int x = 0; x < 10; x++) {
 			Brick* b;
-			switch (RandomInt(0, 3) % 4)
+			switch (RandomInt(0, 4) % 5)
 			{
 			case 0:
 				b = new Brick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
@@ -182,9 +183,12 @@ void GameManager::initialize() {
 			case 2:
 				b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), RM->getFont(RessourceManager::MLFont));
 				break;
-			case 3:
-				b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
-				break;
+            case 3:
+                b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
+                break;
+            case 4:
+                b = new BrickABall(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
+                break;
 			default:
 				break;
 			}
@@ -212,5 +216,13 @@ void GameManager::initialize() {
 		)
 	);
 
-    MaxBallAmount = 3;
+    BallAmount = 5;
+}
+
+void GameManager::addBall() {
+    BallAmount++;
+}
+
+void GameManager::useBall() {
+    BallAmount--;
 }

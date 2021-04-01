@@ -57,7 +57,7 @@ void Canon::shoot()
 {
 	GameManager* GM = GameManager::getInstance();
 
-	if (Cooldown<=0 && GM->getAllBalls().size()<3) {
+	if (Cooldown<=0 && GM->getBallAmount() > 0) {
 		Ball* ball = new Ball(BallSpeed, sf::Vector2f(0,0), Angle);
 		sf::Vector2f canonFront = Position + Direction * _Sprite->getOrigin().y * _Sprite->getScale().y;
 		ball->setPosition(canonFront);
@@ -82,6 +82,7 @@ void Canon::shoot()
 		SoundManager::getInstance()->playSound(SoundManager::SoundLabel::Piou);
 
 		ResetCooldown();
+		GM->useBall();
 	}
 
 }

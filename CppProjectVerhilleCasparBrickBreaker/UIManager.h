@@ -13,6 +13,9 @@ private:
 	ScorePanel* _ScorePanel;
 
 	std::vector<sf::Sprite*> BallSprites;
+	int Offset;
+	int MaxBallBeforeDisplaySwitch;
+	sf::Text* BallQteText;
 
 public:
 	static UIManager* getInstance();

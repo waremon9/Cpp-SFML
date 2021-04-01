@@ -28,7 +28,7 @@ private:
 	std::vector<Particle*> AllParticles;
 	std::vector<ParticleEmitter*> AllParticleEmitters;
 	Canon* _Canon;
-	int MaxBallAmount;
+	int BallAmount;
 
 	void updateDeltaTime();
 	void processEvent();
@@ -50,6 +50,9 @@ public:
 	std::vector<ParticleEmitter*>& getAllParticleEmitters() { return AllParticleEmitters; }
 	std::vector<Particle*>& getAllParticles() { return AllParticles; }
 	NomMarrantTableauUneDimension* getBricksTableau() { return BricksTableau; }
-	int getMaxBall() { return MaxBallAmount; }
+	int getBallAmount() { return BallAmount; }
+
+	void addBall();
+	void useBall();
 };
 

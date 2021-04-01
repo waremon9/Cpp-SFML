@@ -6,7 +6,7 @@ ScorePanel::ScorePanel(sf::Vector2f pos) : Entity(pos)
 {
 	Panel = new sf::RectangleShape(sf::Vector2f(200, 70));
 	Panel->setOutlineThickness(-5);
-	Panel->setFillColor(sf::Color(255, 255, 255, 30));
+	Panel->setFillColor(sf::Color(255, 255, 255, 255));
 	Panel->setOutlineColor(sf::Color(180, 180, 180, 255));
 	Panel->setPosition(pos);
 
