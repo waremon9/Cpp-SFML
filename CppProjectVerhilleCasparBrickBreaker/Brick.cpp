@@ -3,6 +3,8 @@
 Brick::Brick(sf::Vector2f position, sf::Vector2i coord) : ShapeEntity(position)
 {
 	Life = 1;
+	Score = 100;
+
 	Coordinate = coord;
 
 	_Shape = new sf::RectangleShape{ sf::Vector2f(90,40) };

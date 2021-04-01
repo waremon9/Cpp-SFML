@@ -7,6 +7,7 @@ class Brick : public ShapeEntity
 protected:
 	int Life;
 	sf::Vector2i Coordinate;
+	int Score;
 
 	sf::Color FillColor;
 	sf::Color OutlineColor;
