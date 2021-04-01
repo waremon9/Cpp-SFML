@@ -9,7 +9,7 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos
 {
 	RessourceManager* RM = RessourceManager::getInstance();
 
-	ExplosiveRange = 30;
+	//check it doesn't explode more than once (in case 2+ explo block are near each other)
 	AlreadyExplode = false;
 
 	//brick color
@@ -45,6 +45,7 @@ void ExplosiveBrick::explode()
 
 	GameManager* GM = GameManager::getInstance();
 
+	//Explosion particle
 	GM->getAllParticleEmitters().push_back(
 		new ParticleEmitter(
 			Position,
@@ -61,11 +62,12 @@ void ExplosiveBrick::explode()
 
 	NomMarrantTableauUneDimension* BricksTableau = GM->getBricksTableau();
 
+	//north, est, south, weast brick
 	if (Coordinate.x != 0 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y)->damage();
 	if (Coordinate.x != BricksTableau->getWidth() - 1 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y)->damage();
 	if (Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x, Coordinate.y - 1)->damage();
 	if (Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x, Coordinate.y + 1)->damage();
-
+	//NE, NW, SE, SW brick
 	if (Coordinate.x != 0 && Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y - 1)->damage();
 	if (Coordinate.x != BricksTableau->getWidth() - 1 && Coordinate.y != 0 && BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x + 1, Coordinate.y - 1)->damage();
 	if (Coordinate.x != 0 && Coordinate.y != BricksTableau->getHeight() - 1 && BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1) != nullptr) BricksTableau->getBrickAt(Coordinate.x - 1, Coordinate.y + 1)->damage();
@@ -76,6 +78,7 @@ void ExplosiveBrick::damage()
 {
 	Brick::damage();
 
+	//damage adjacent brick
 	if (!AlreadyExplode) {
 		AlreadyExplode = true;
 		explode();

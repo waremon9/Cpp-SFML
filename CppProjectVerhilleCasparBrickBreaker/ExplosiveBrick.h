@@ -6,7 +6,6 @@
 class ExplosiveBrick : public Brick
 {
 private:
-	float ExplosiveRange;
 	bool AlreadyExplode;
 
 	sf::Sprite* BombIcon;

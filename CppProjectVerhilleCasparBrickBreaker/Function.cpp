@@ -46,6 +46,7 @@ float distance2Points(sf::Vector2<float> p1, sf::Vector2<float> p2) {
     return abs(sqrt((p2.x - p1.x)* (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)));
 }
 
+//return true if a vector<Entity> contain a certain Entity
 bool vectorContain(const std::vector<Entity*>& v, Entity* elem) {
     if (std::find(v.begin(), v.end(), elem) != v.end()) {
         return true;
@@ -53,6 +54,7 @@ bool vectorContain(const std::vector<Entity*>& v, Entity* elem) {
     return false;
 }
 
+//Return true if 2 Entity intersect
 bool intersects(const Entity* E1, const Entity* E2)  {
     sf::FloatRect Bound1 = E1->getGlobalBounds();
     sf::FloatRect Bound2 = E2->getGlobalBounds();
@@ -66,6 +68,7 @@ bool intersects(const Entity* E1, const Entity* E2)  {
     return false;
 }
 
+//Return on which side of a brick the ball hit
 Entity::Side whichSide(const Entity* E1, const Entity* E2) {
     sf::FloatRect Bound1 = E1->getGlobalBounds();
     sf::FloatRect Bound2 = E2->getGlobalBounds();
@@ -80,6 +83,7 @@ Entity::Side whichSide(const Entity* E1, const Entity* E2) {
     else if (konami == bas)  return Entity::Side::BOTTOM;
 }
 
+//Return true when 2 Ball intersect
 bool ballIntersects(const Entity* E1, const Entity* E2) {
     sf::FloatRect Bound1 = E1->getGlobalBounds();
     sf::FloatRect Bound2 = E2->getGlobalBounds();
@@ -92,6 +96,7 @@ bool ballIntersects(const Entity* E1, const Entity* E2) {
     return distance < Bound1.width / 2 + Bound2.width / 2;
 }
 
+//Return the point of colision of the 2 ball
 sf::Vector2f BallIntersectCenterPoint(const Entity* depart, const Entity* arrivee) {
     sf::FloatRect Bound1 = depart->getGlobalBounds();
     sf::FloatRect Bound2 = arrivee->getGlobalBounds();
@@ -101,6 +106,7 @@ sf::Vector2f BallIntersectCenterPoint(const Entity* depart, const Entity* arrive
     return departCenter + (ArriveeCenter - departCenter) / 2.f;
 }
 
+//Check for every ball if colision with something
 void CheckCollisions()
 {
     GameManager* GM = GameManager::getInstance();
@@ -110,7 +116,7 @@ void CheckCollisions()
 
         bool hitSomething = false;
 
-        for (Brick* brick : GM->getAllBricks())
+        for (Brick* brick : GM->getAllBricks())//check with all bricks
         {
             if (intersects(ball, brick))
             {
@@ -157,7 +163,7 @@ void CheckCollisions()
             }
         }
 
-        for (Entity* border : GM->getAllBorders())
+        for (Entity* border : GM->getAllBorders())//check with border of window
         {
             if (intersects(ball, border))
             {
@@ -202,7 +208,7 @@ void CheckCollisions()
         }
 
 
-        for (int i = ballIndex; i < GM->getAllBalls().size(); i++ ) {
+        for (int i = ballIndex; i < GM->getAllBalls().size(); i++ ) {//Check with every ball after it in the list
             if (ballIntersects(ball, GM->getAllBalls()[i]))
             {
                 if (!vectorContain(ball->getCollisionVector(), GM->getAllBalls()[i]))
@@ -233,6 +239,7 @@ void CheckCollisions()
     }
 }
 
+//Delete ball when they go below the window
 void removeOutOfBoundBall() {
     GameManager* GM = GameManager::getInstance();
 
@@ -252,6 +259,7 @@ void removeOutOfBoundBall() {
     }
 }
 
+//delete brick when life reach 0
 void removeDeadBlock() {
     GameManager* GM = GameManager::getInstance();
 
@@ -293,6 +301,7 @@ void removeDeadBlock() {
     }
 }
 
+//delete particle when lifetime reach 0
 void removeParticle() {
     GameManager* GM = GameManager::getInstance();
 
@@ -312,6 +321,7 @@ void removeParticle() {
     }
 }
 
+//delete particle emitter when lifetime reach 0
 void removeParticleEmitter() {
     GameManager* GM = GameManager::getInstance();
 

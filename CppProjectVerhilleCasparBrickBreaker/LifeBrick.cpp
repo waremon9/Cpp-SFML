@@ -1,6 +1,7 @@
 #include "LifeBrick.h"
 #include <iostream>
 #include "UIManager.h"
+#include "GameManager.h"
 
 class Brick;
 class Entity;
@@ -10,12 +11,14 @@ LifeBrick::LifeBrick(sf::Vector2f pos, sf::Vector2i coord, int life, sf::Font* f
 	Life = life;
 	HitScore = 20;
 
+	//Brick color
 	FillColor = sf::Color(255, 60, 60);
 	OutlineColor = sf::Color(255, 180, 180);
 
 	_Shape->setFillColor(FillColor);
 	_Shape->setOutlineColor(OutlineColor);
 
+	//brick text number
 	TextNumber->setFont(*font);
 	UpdateTextNumber();
 }
@@ -44,5 +47,5 @@ void LifeBrick::damage()
 {
 	Brick::damage();
 	UpdateTextNumber();
-	UIManager::getInstance()->addScore(getHitScore());
+	UIManager::getInstance()->addScore(getHitScore());//getpoint when ball hit
 }

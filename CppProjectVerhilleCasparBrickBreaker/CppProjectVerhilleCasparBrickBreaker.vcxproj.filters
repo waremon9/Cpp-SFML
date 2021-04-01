@@ -19,6 +19,18 @@
     <Filter Include="header\Class\Bricks">
       <UniqueIdentifier>{a4119f06-405e-4afa-ab13-6523558184f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="header\Manager">
+      <UniqueIdentifier>{c14f8ce1-4b14-46a5-b898-ebe4fb58db2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp\Manager">
+      <UniqueIdentifier>{418e608f-dd8a-4295-a597-99f186a81bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header\Class\Particle">
+      <UniqueIdentifier>{31f62de0-ed95-42f0-98b7-30f3aee9a981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp\Class\Particle">
+      <UniqueIdentifier>{dc72bc76-9fcd-42d5-81ac-d5ea84a7bc9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,18 +69,42 @@
     <ClCompile Include="ExplosiveBrick.cpp">
       <Filter>cpp\Class\Bricks</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleEmitter.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticleSimple.cpp" />
-    <ClCompile Include="ParticleComplex.cpp" />
-    <ClCompile Include="NomMarrantTableauUneDimension.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="ScorePanel.cpp" />
-    <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="RessourceManager.cpp" />
-    <ClCompile Include="BrickABall.cpp" />
-    <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="UIManager.cpp">
+      <Filter>cpp\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="RessourceManager.cpp">
+      <Filter>cpp\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>cpp\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickABall.cpp">
+      <Filter>cpp\Class\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Bouton.cpp">
+      <Filter>cpp\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="NomMarrantTableauUneDimension.cpp">
+      <Filter>cpp\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="ScorePanel.cpp">
+      <Filter>cpp\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>cpp\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>cpp\Class\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleComplex.cpp">
+      <Filter>cpp\Class\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleEmitter.cpp">
+      <Filter>cpp\Class\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSimple.cpp">
+      <Filter>cpp\Class\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -104,17 +140,41 @@
     <ClInclude Include="ExplosiveBrick.h">
       <Filter>header\Class\Bricks</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleEmitter.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleSimple.h" />
-    <ClInclude Include="ParticleComplex.h" />
-    <ClInclude Include="NomMarrantTableauUneDimension.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="ScorePanel.h" />
-    <ClInclude Include="UIManager.h" />
-    <ClInclude Include="RessourceManager.h" />
-    <ClInclude Include="BrickABall.h" />
-    <ClInclude Include="Bouton.h" />
+    <ClInclude Include="UIManager.h">
+      <Filter>header\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="RessourceManager.h">
+      <Filter>header\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>header\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickABall.h">
+      <Filter>header\Class\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>header\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ScorePanel.h">
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Bouton.h">
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="NomMarrantTableauUneDimension.h">
+      <Filter>header\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSimple.h">
+      <Filter>header\Class\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>header\Class\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleComplex.h">
+      <Filter>header\Class\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>header\Class\Particle</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 
 BrickABall::BrickABall(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
 {
+	//bool to be sure the ball isn't given more than once
 	BallGiven = false;
 
 	//brick color
@@ -24,6 +25,7 @@ BrickABall::BrickABall(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
 void BrickABall::damage()
 {
 	Brick::damage();
+	//player get a bonus ball
 	if (!BallGiven) {
 		gimmeBall();
 		BallGiven = true;

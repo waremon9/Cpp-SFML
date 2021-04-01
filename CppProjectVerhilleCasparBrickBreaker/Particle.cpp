@@ -28,7 +28,7 @@ void Particle::update(float dt)
 
 void Particle::move(float dt) {
 	Position += Direction * Velocity * dt;
-	if (Direction.y < 1) {
+	if (Direction.y < 1) {//when gravity enable, make the particle fall
 		Direction.y += GravityStrenght * dt;
 		Direction = normalizeVector(Direction);
 	}

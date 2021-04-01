@@ -7,6 +7,7 @@ Brick::Brick(sf::Vector2f position, sf::Vector2i coord) : ShapeEntity(position)
 
 	Coordinate = coord;
 
+	//Brick shape/color
 	_Shape = new sf::RectangleShape{ sf::Vector2f(90,40) };
 	_Shape->setPosition(Position);
 	_Shape->setOutlineThickness(-5);
