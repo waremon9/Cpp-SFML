@@ -23,5 +23,7 @@ public:
 	void addScore(int x);
 
 	void drawUI();
+
+	void ScoreReset();
 };
 

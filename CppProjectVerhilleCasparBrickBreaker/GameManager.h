@@ -11,6 +11,7 @@ class Particle;
 class ParticleEmitter;
 class Canon;
 class ScorePanel;
+class Bouton;
 
 class GameManager
 {
@@ -21,6 +22,7 @@ private:
 	sf::RenderWindow* Window;
 	sf::Clock* DeltaClock;
 	float DeltaTime;
+
 	std::vector<Ball*> AllBalls;
 	std::vector<Brick*> AllBricks;
 	NomMarrantTableauUneDimension* BricksTableau;
@@ -28,6 +30,7 @@ private:
 	std::vector<Particle*> AllParticles;
 	std::vector<ParticleEmitter*> AllParticleEmitters;
 	Canon* _Canon;
+	Bouton* _Bouton;
 	int BallAmount;
 
 	void updateDeltaTime();
@@ -54,5 +57,7 @@ public:
 
 	void addBall();
 	void useBall();
+
+	void Reset();
 };
 

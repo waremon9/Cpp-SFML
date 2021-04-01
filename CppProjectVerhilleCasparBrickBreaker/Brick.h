@@ -16,7 +16,9 @@ public:
 	Brick(sf::Vector2f, sf::Vector2i); //position, coordinate in brick tableau
 
 	int getLife() const { return Life; }
+	int getScore() const { return Score; }
 	sf::Vector2i getCoordinate() const { return Coordinate; }
 
 	virtual void damage() { Life--; }
+	
 };

@@ -21,6 +21,7 @@
 #include "UIManager.h"
 #include "RessourceManager.h"
 #include "ScorePanel.h"
+#include "Bouton.h"
 
 GameManager* GameManager::Instance = nullptr;
 
@@ -71,7 +72,14 @@ void GameManager::processEvent()
         {
             if (event.mouseButton.button == sf::Mouse::Left)
             {
-                _Canon->shoot();
+                if (sf::Mouse::getPosition(*Window).x > _Bouton->getGlobalBounds().left &&
+                    sf::Mouse::getPosition(*Window).x < _Bouton->getGlobalBounds().left + _Bouton->getGlobalBounds().width &&
+                    sf::Mouse::getPosition(*Window).y > _Bouton->getGlobalBounds().top &&
+                    sf::Mouse::getPosition(*Window).y < _Bouton->getGlobalBounds().top + _Bouton->getGlobalBounds().height) {
+                    std::cout<<"THOMAS JE TE HAIS\n";
+                    GameManager::getInstance()->Reset();
+                }
+                else { _Canon->shoot(); }
             }
         }
     }
@@ -124,6 +132,7 @@ void GameManager::updateScreen()
     }
 
     _Canon->draw();
+    _Bouton->draw();
 
 
     for (Particle* p : AllParticles) {
@@ -155,6 +164,7 @@ void GameManager::initialize() {
 	DeltaClock = new sf::Clock;
 	DeltaTime = 0;
 	_Canon = new Canon();
+    _Bouton = new Bouton();
 
 	sf::Listener::setGlobalVolume(50); // global sound volume
 
@@ -168,34 +178,7 @@ void GameManager::initialize() {
 	AllBorders.push_back(new GameBorder(sf::Vector2f(-BorderThickness, 0), sf::Vector2f(BorderThickness, Window->getSize().y)));//left
 	AllBorders.push_back(new GameBorder(sf::Vector2f(Window->getSize().x, 0), sf::Vector2f(BorderThickness, Window->getSize().y)));//right
 
-	//bricks
-	for (int y = 0; y < 5; y++) {
-		for (int x = 0; x < 10; x++) {
-			Brick* b;
-			switch (RandomInt(0, 4) % 5)
-			{
-			case 0:
-				b = new Brick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
-				break;
-			case 1:
-				b = new LifeBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(3, 5), RM->getFont(RessourceManager::MLFont));
-				break;
-			case 2:
-				b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), RM->getFont(RessourceManager::MLFont));
-				break;
-            case 3:
-                b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
-                break;
-            case 4:
-                b = new BrickABall(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
-                break;
-			default:
-				break;
-			}
-			AllBricks.push_back(b);
-			BricksTableau->pushBack(b);
-		}
-	}
+	
 
 	//Particle test
 	AllParticleEmitters.push_back(//add the emitter to the list
@@ -216,7 +199,9 @@ void GameManager::initialize() {
 		)
 	);
 
-    BallAmount = 5;
+    
+
+    Reset();
 }
 
 void GameManager::addBall() {
@@ -225,4 +210,49 @@ void GameManager::addBall() {
 
 void GameManager::useBall() {
     BallAmount--;
+}
+
+void GameManager::Reset()
+{
+    RessourceManager* RM = RessourceManager::getInstance();
+
+    for (Brick* b : AllBricks) {
+        delete b;
+    }
+    AllBricks.clear();
+    BricksTableau->clear();
+    //bricks
+	for (int y = 0; y < 5; y++) {
+	    for (int x = 0; x < 10; x++) {
+            Brick* b;
+            switch (RandomInt(0, 4) % 5)
+            {
+                case 0:
+                    b = new Brick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
+                    break;
+                case 1:
+                    b = new LifeBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(3, 5), RM->getFont(RessourceManager::MLFont));
+                    break;
+                case 2:
+                    b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), RM->getFont(RessourceManager::MLFont));
+                    break;
+                case 3:
+                    b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
+                    break;
+                case 4:
+                    b = new BrickABall(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
+                    break;
+                default:
+                    break;
+            }
+            AllBricks.push_back(b);
+            BricksTableau->pushBack(b);
+	    }
+	}
+
+    AllBalls.clear();
+    
+    BallAmount = 5;
+
+    UIManager::getInstance()->ScoreReset();
 }

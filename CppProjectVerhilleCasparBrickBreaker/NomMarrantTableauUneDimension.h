@@ -23,5 +23,7 @@ public:
 
 	Brick* getBrickAt(sf::Vector2i taille) { return Tableau[taille.y * Width + taille.x]; }
 	Brick* getBrickAt(int x, int y) { return Tableau[y * Width + x]; }
+
+	void clear();
 };
 

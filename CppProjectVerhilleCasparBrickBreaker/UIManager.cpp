@@ -54,6 +54,12 @@ void UIManager::drawUI()
 	}
 }
 
+void UIManager::ScoreReset()
+{
+	Score = 0;
+	_ScorePanel->updateScore(Score);
+}
+
 
 void UIManager::addScore(int s) {
 	Score += s;

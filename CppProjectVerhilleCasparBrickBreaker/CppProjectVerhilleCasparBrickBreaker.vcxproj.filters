@@ -68,6 +68,7 @@
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="RessourceManager.cpp" />
     <ClCompile Include="BrickABall.cpp" />
+    <ClCompile Include="Bouton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -114,5 +115,6 @@
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="RessourceManager.h" />
     <ClInclude Include="BrickABall.h" />
+    <ClInclude Include="Bouton.h" />
   </ItemGroup>
 </Project>
