@@ -18,6 +18,7 @@
 #include "NomMarrantTableauUneDimension.h"
 #include "SoundManager.h"
 #include "UIManager.h"
+#include "RessourceManager.h"
 #include "ScorePanel.h"
 
 GameManager* GameManager::Instance = nullptr;
@@ -144,6 +145,8 @@ GameManager* GameManager::getInstance()
 }
 
 void GameManager::initialize() {
+    RessourceManager* RM = RessourceManager::getInstance();
+
 	srand((unsigned)time(NULL));
 
 	Window = new sf::RenderWindow(sf::VideoMode(1050, 700), "HelloWorld");
@@ -157,9 +160,6 @@ void GameManager::initialize() {
 	if (sf::Listener::getGlobalVolume() != 0) {
         SoundManager::getInstance()->playSound(SoundManager::SoundLabel::RerunOst);
 	}
-
-	sf::Font* MLFont = new sf::Font;
-	MLFont->loadFromFile("MarioLuigi2.ttf");
 
 	float BorderThickness = 10;
 	//Borders
@@ -177,10 +177,10 @@ void GameManager::initialize() {
 				b = new Brick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));
 				break;
 			case 1:
-				b = new LifeBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(3, 5), MLFont);
+				b = new LifeBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(3, 5), RM->getFont(RessourceManager::MLFont));
 				break;
 			case 2:
-				b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), MLFont);
+				b = new RegenBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y), RandomInt(2, 3), RM->getFont(RessourceManager::MLFont));
 				break;
 			case 3:
 				b = new ExplosiveBrick(sf::Vector2f{ 25 + x * 100.f, 20 + y * 50.f }, sf::Vector2i(x, y));

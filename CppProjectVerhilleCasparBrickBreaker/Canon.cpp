@@ -1,9 +1,12 @@
 #include "Canon.h"
 #include "Ball.h"
 #include "SoundManager.h"
+#include "RessourceManager.h"
 
 Canon::Canon()
 {
+	RessourceManager* RM = RessourceManager::getInstance();
+
 	Angle = 0;
 
 	BaseCooldown = 0.3f;
@@ -12,21 +15,11 @@ Canon::Canon()
 
 	//Canon sprite
 	_Sprite = new sf::Sprite;
-
-	_Texture = new sf::Texture;
-	_Texture->loadFromFile("canon.png");
-	_Texture->setSmooth(true);
-
-	_Sprite->setTexture(*_Texture);
+	_Sprite->setTexture(*RM->getTexture(RessourceManager::Canon));
 
 	//Particle sprite
 	sf::Sprite* spr = new sf::Sprite;
-
-	sf::Texture* tex = new sf::Texture;
-	tex->loadFromFile("explosionParticle.png");
-	tex->setSmooth(true);
-
-	spr->setTexture(*tex);
+	spr->setTexture(*RM->getTexture(RessourceManager::ExplosionPart));
 	spr->setScale(0.08f, 0.08f);
 
 	ShootParticle = new ParticleComplex(

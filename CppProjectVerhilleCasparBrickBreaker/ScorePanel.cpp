@@ -1,5 +1,6 @@
 #include "ScorePanel.h"
 #include "GameManager.h"
+#include "RessourceManager.h"
 
 ScorePanel::ScorePanel(sf::Vector2f pos) : Entity(pos)
 {
@@ -9,9 +10,7 @@ ScorePanel::ScorePanel(sf::Vector2f pos) : Entity(pos)
 	Panel->setOutlineColor(sf::Color(180, 180, 180, 255));
 	Panel->setPosition(pos);
 
-	sf::Font* MLFont = new sf::Font;
-	MLFont->loadFromFile("MarioLuigi2.ttf");
-	_Text = new sf::Text("Score : 0", *MLFont);
+	_Text = new sf::Text("Score : 0", *RessourceManager::getInstance()->getFont(RessourceManager::MLFont));
 	_Text->setCharacterSize(24);
 	_Text->setFillColor(sf::Color(180,60,60,255));
 	_Text->setPosition(pos + sf::Vector2f(30, 20));

@@ -3,9 +3,12 @@
 #include "NomMarrantTableauUneDimension.h"
 #include <iostream>
 #include "SoundManager.h"
+#include "RessourceManager.h"
 
 ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos, coord)
 {
+	RessourceManager* RM = RessourceManager::getInstance();
+
 	ExplosiveRange = 30;
 	AlreadyExplode = false;
 
@@ -17,11 +20,8 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos
 	_Shape->setOutlineColor(OutlineColor);
 
 	//Bomb icon
-	sf::Texture* bomb = new sf::Texture;
-	bomb->loadFromFile("BombIcon.png");
-	bomb->setSmooth(true);
 	BombIcon = new sf::Sprite();
-	BombIcon->setTexture(*bomb);
+	BombIcon->setTexture(*RM->getTexture(RessourceManager::BombIcon));
 	sf::FloatRect bombBound = BombIcon->getGlobalBounds();
 	BombIcon->setOrigin(sf::Vector2f(bombBound.width / 2, bombBound.height / 2));
 	BombIcon->setPosition(Position + ((sf::RectangleShape*)_Shape)->getSize() / 2.f);
@@ -29,12 +29,7 @@ ExplosiveBrick::ExplosiveBrick(sf::Vector2f pos, sf::Vector2i coord) : Brick(pos
 
 	//Particle sprite
 	sf::Sprite* spr = new sf::Sprite;
-
-	sf::Texture* tex = new sf::Texture;
-	tex->loadFromFile("explosionParticle.png");
-	tex->setSmooth(true);
-
-	spr->setTexture(*tex);
+	spr->setTexture(*RM->getTexture(RessourceManager::ExplosionPart));
 	spr->setScale(0.08, 0.08);
 
 	ExplosionParticle = new ParticleComplex(

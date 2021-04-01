@@ -165,6 +165,7 @@
     <ClCompile Include="ParticleEmitter.cpp" />
     <ClCompile Include="ParticleSimple.cpp" />
     <ClCompile Include="RegenBrick.cpp" />
+    <ClCompile Include="RessourceManager.cpp" />
     <ClCompile Include="ScorePanel.cpp" />
     <ClCompile Include="ShapeEntity.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="ParticleEmitter.h" />
     <ClInclude Include="ParticleSimple.h" />
     <ClInclude Include="RegenBrick.h" />
+    <ClInclude Include="RessourceManager.h" />
     <ClInclude Include="ScorePanel.h" />
     <ClInclude Include="ShapeEntity.h" />
     <ClInclude Include="SoundManager.h" />

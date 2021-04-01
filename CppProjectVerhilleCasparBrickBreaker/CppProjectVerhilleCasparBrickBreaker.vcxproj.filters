@@ -66,6 +66,7 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="ScorePanel.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="RessourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Function.h">
@@ -110,5 +111,6 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="ScorePanel.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="RessourceManager.h" />
   </ItemGroup>
 </Project>

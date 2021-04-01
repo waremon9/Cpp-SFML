@@ -1,6 +1,7 @@
 #include "UIManager.h"
 #include "ScorePanel.h"
 #include "GameManager.h"
+#include "RessourceManager.h"
 
 UIManager* UIManager::Instance = nullptr;
 
@@ -10,12 +11,9 @@ UIManager::UIManager() {
 	Score = 0;
 	_ScorePanel = new ScorePanel(sf::Vector2f(0, GM->getWindow()->getSize().y - 70));
 
-	sf::Texture* ballTexture = new sf::Texture;
-	ballTexture->loadFromFile("Ball.png");
-
 	for (int i = 0; i < GM->getMaxBall(); i++) {
 		sf::Sprite* s = new sf::Sprite;
-		s->setTexture(*ballTexture);
+		s->setTexture(*RessourceManager::getInstance()->getTexture(RessourceManager::Ball));
 		s->setPosition(sf::Vector2f(GM->getWindow()->getSize().x - 40 - 40 * i,GM->getWindow()->getSize().y - 40));
 		BallSprites.push_back(s);
 	}
