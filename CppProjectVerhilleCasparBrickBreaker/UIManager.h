@@ -12,6 +12,8 @@ private:
 	float Score;
 	ScorePanel* _ScorePanel;
 
+	std::vector<sf::Sprite*> BallSprites;
+
 public:
 	static UIManager* getInstance();
 

@@ -5,8 +5,20 @@
 UIManager* UIManager::Instance = nullptr;
 
 UIManager::UIManager() {
+	GameManager* GM = GameManager::getInstance();
+
 	Score = 0;
-	_ScorePanel = new ScorePanel(sf::Vector2f(0, GameManager::getInstance()->getWindow()->getSize().y - 70));
+	_ScorePanel = new ScorePanel(sf::Vector2f(0, GM->getWindow()->getSize().y - 70));
+
+	sf::Texture* ballTexture = new sf::Texture;
+	ballTexture->loadFromFile("Ball.png");
+
+	for (int i = 0; i < GM->getMaxBall(); i++) {
+		sf::Sprite* s = new sf::Sprite;
+		s->setTexture(*ballTexture);
+		s->setPosition(sf::Vector2f(GM->getWindow()->getSize().x - 40 - 40 * i,GM->getWindow()->getSize().y - 40));
+		BallSprites.push_back(s);
+	}
 }
 
 UIManager* UIManager::getInstance()
@@ -19,7 +31,13 @@ UIManager* UIManager::getInstance()
 
 void UIManager::drawUI()
 {
+	GameManager* GM = GameManager::getInstance();
+
 	_ScorePanel->draw();
+
+	for (int i = 0; i < GM->getMaxBall() - GM->getAllBalls().size(); i++) {
+		GM->getWindow()->draw(*BallSprites[i]);
+	}
 }
 
 

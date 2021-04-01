@@ -211,4 +211,6 @@ void GameManager::initialize() {
 			sf::Color(160, 160, 160, 150)//Color of the particle
 		)
 	);
+
+    MaxBallAmount = 3;
 }
